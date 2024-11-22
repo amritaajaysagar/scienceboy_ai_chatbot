@@ -1,0 +1,23 @@
+{
+    "greetings": [
+        "Hi there! How can I help you?",
+        "Hello! What can I do for you today?",
+        "Hey! How can I assist you?",
+        "Hello! Who is feeling sciency?"
+    
+    ],
+    "farewells": [
+        "Goodbye! Have a great day!",
+        "See you later!",
+        "Take care!",
+        "Long live and Prosper",
+        "Goodbye, may the force be with you.",
+        "Bazinga"
+    ],
+    "how_are_you": [
+        "I'm just a bot, but I'm doing great! How about you?",
+        "Doing well, thank you! And you?",
+        "I'm here to help! What about you?"
+    ],
+    "default": "Sorry, I don't understand that. Can you rephrase?"
+}

@@ -1,0 +1,140 @@
+{
+    "Medium": {
+        "Electrodynamics": [
+            {"question": "What is the unit of electric current?", "options": ["Ampere", "Volt", "Ohm", "Watt"], "answer": "Ampere"},
+            {"question": "Which particle carries a negative charge?", "options": ["Electron", "Proton", "Neutron", "Photon"], "answer": "Electron"},
+            {"question": "What is the unit of resistance?", "options": ["Ohm", "Volt", "Newton", "Watt"], "answer": "Ohm"},
+            {"question": "What does a voltmeter measure?", "options": ["Voltage", "Current", "Resistance", "Power"], "answer": "Voltage"},
+            {"question": "What is the SI unit of electric power?", "options": ["Watt", "Joule", "Ampere", "Volt"], "answer": "Watt"},
+            {"question": "What is the charge of a proton?", "options": ["Positive", "Negative", "Neutral", "None"], "answer": "Positive"},
+            {"question": "Which device stores electric charge?", "options": ["Capacitor", "Resistor", "Transistor", "Inductor"], "answer": "Capacitor"},
+            {"question": "What is the function of a fuse in a circuit?", "options": ["To prevent overloading", "To store charge", "To increase current", "To convert AC to DC"], "answer": "To prevent overloading"},
+            {"question": "What is the symbol for an electric field?", "options": ["E", "B", "V", "I"], "answer": "E"},
+            {"question": "Which material is a good conductor of electricity?", "options": ["Copper", "Wood", "Rubber", "Plastic"], "answer": "Copper"}
+        ],
+        "Classical Mechanics": [
+            {"question": "What is the SI unit of force?", "options": ["Newton", "Joule", "Pascal", "Watt"], "answer": "Newton"},
+            {"question": "What is the SI unit of work?", "options": ["Joule", "Newton", "Watt", "Pascal"], "answer": "Joule"},
+            {"question": "Which quantity describes the amount of matter in an object?", "options": ["Mass", "Volume", "Weight", "Force"], "answer": "Mass"},
+            {"question": "What is the acceleration due to gravity on Earth?", "options": ["9.8 m/s²", "10 m/s²", "8.9 m/s²", "12 m/s²"], "answer": "9.8 m/s²"},
+            {"question": "What is the unit of energy?", "options": ["Joule", "Watt", "Newton", "Pascal"], "answer": "Joule"},
+            {"question": "What does a simple machine do?", "options": ["Reduces the effort needed", "Increases energy", "Reduces gravity", "Produces power"], "answer": "Reduces the effort needed"},
+            {"question": "What is the formula for speed?", "options": ["Speed = Distance/Time", "Speed = Time × Distance", "Speed = Distance × Time", "Speed = Acceleration × Time"], "answer": "Speed = Distance/Time"},
+            {"question": "What is the SI unit of power?", "options": ["Watt", "Joule", "Newton", "Pascal"], "answer": "Watt"},
+            {"question": "Which force opposes motion?", "options": ["Friction", "Gravity", "Tension", "Normal"], "answer": "Friction"},
+            {"question": "What is inertia?", "options": ["Resistance to motion change", "Speed of an object", "Force of gravity", "Tendency to fall"], "answer": "Resistance to motion change"}
+        ],
+        "Quantum Mechanics": [
+            {"question": "What does a photon represent?", "options": ["A quantum of light", "A particle of mass", "A type of charge", "A wave"], "answer": "A quantum of light"},
+            {"question": "What is Planck's constant used for?", "options": ["Energy of photons", "Force of gravity", "Speed of sound", "Mass of atoms"], "answer": "Energy of photons"},
+            {"question": "Who proposed the wave-particle duality?", "options": ["Louis de Broglie", "Einstein", "Newton", "Bohr"], "answer": "Louis de Broglie"},
+            {"question": "What is the unit of Planck's constant?", "options": ["Joule·second", "Newton·meter", "Joule/meter", "Watt·second"], "answer": "Joule·second"},
+            {"question": "Which scientist is associated with uncertainty principle?", "options": ["Heisenberg", "Bohr", "Einstein", "Planck"], "answer": "Heisenberg"},
+            {"question": "What does Schrödinger's equation describe?", "options": ["Wave function", "Photon energy", "Quantum force", "Planck constant"], "answer": "Wave function"},
+            {"question": "What is the smallest unit of electromagnetic radiation?", "options": ["Photon", "Quark", "Electron", "Neutrino"], "answer": "Photon"},
+            {"question": "What is a wave function?", "options": ["Describes probability", "Describes momentum", "Describes mass", "Describes charge"], "answer": "Describes probability"},
+            {"question": "What is the energy of a photon related to?", "options": ["Frequency", "Speed", "Mass", "Charge"], "answer": "Frequency"},
+            {"question": "Which constant relates energy to frequency?", "options": ["Planck's constant", "Boltzmann constant", "Coulomb's constant", "Faraday constant"], "answer": "Planck's constant"}
+        ],
+        "Chemistry": [
+            {"question": "What is the chemical symbol for water?", "options": ["H2O", "O2", "CO2", "H2"], "answer": "H2O"},
+            {"question": "What is the pH of pure water?", "options": ["7", "6", "8", "5"], "answer": "7"},
+            {"question": "What is the atomic number of hydrogen?", "options": ["1", "2", "3", "4"], "answer": "1"},
+            {"question": "What is the formula for common table salt?", "options": ["NaCl", "KCl", "NaOH", "HCl"], "answer": "NaCl"},
+            {"question": "What type of bond is found in a water molecule?", "options": ["Covalent", "Ionic", "Metallic", "Hydrogen"], "answer": "Covalent"},
+            {"question": "Which gas is known as the 'laughing gas'?", "options": ["Nitrous oxide", "Oxygen", "Carbon dioxide", "Ammonia"], "answer": "Nitrous oxide"},
+            {"question": "What is the main component of air?", "options": ["Nitrogen", "Oxygen", "Carbon dioxide", "Hydrogen"], "answer": "Nitrogen"},
+            {"question": "What is the molar mass of water?", "options": ["18 g/mol", "20 g/mol", "16 g/mol", "22 g/mol"], "answer": "18 g/mol"},
+            {"question": "Which element has the highest electronegativity?", "options": ["Fluorine", "Oxygen", "Chlorine", "Nitrogen"], "answer": "Fluorine"},
+            {"question": "What is the chemical symbol for gold?", "options": ["Au", "Ag", "Fe", "Pt"], "answer": "Au"}
+        ],
+        "Biology": [
+            {"question": "What is the basic unit of life?", "options": ["Cell", "Atom", "Molecule", "Organ"], "answer": "Cell"},
+            {"question": "Which organ pumps blood in the human body?", "options": ["Heart", "Lungs", "Kidney", "Liver"], "answer": "Heart"},
+            {"question": "What is the genetic material in a cell?", "options": ["DNA", "RNA", "Protein", "Lipid"], "answer": "DNA"},
+            {"question": "Which organ is responsible for filtering blood?", "options": ["Kidney", "Lungs", "Heart", "Stomach"], "answer": "Kidney"},
+            {"question": "What is photosynthesis?", "options": ["Conversion of light to energy", "Breaking down food", "Movement of water", "Generation of heat"], "answer": "Conversion of light to energy"},
+            {"question": "What is the powerhouse of the cell?", "options": ["Mitochondria", "Nucleus", "Ribosome", "Cytoplasm"], "answer": "Mitochondria"},
+            {"question": "What is the largest organ in the human body?", "options": ["Skin", "Heart", "Liver", "Brain"], "answer": "Skin"},
+            {"question": "What do red blood cells transport?", "options": ["Oxygen", "Carbon dioxide", "Nutrients", "Hormones"], "answer": "Oxygen"},
+            {"question": "What is the main function of the lungs?", "options": ["Gas exchange", "Blood circulation", "Food digestion", "Water regulation"], "answer": "Gas exchange"},
+            {"question": "What is the outer covering of a plant cell?", "options": ["Cell wall", "Cell membrane", "Cytoplasm", "Nucleus"], "answer": "Cell wall"}
+        ]
+    },
+
+    "Difficult": {
+        "Electrodynamics": [
+            {"question": "What is the Poynting vector, and what does it represent?", "options": ["Energy flow in an electromagnetic wave", "Electric flux density", "Magnetic flux density", "Force per unit charge"], "answer": "Energy flow in an electromagnetic wave"},
+            {"question": "What is the characteristic impedance of free space?", "options": ["377 ohms", "100 ohms", "300 ohms", "75 ohms"], "answer": "377 ohms"},
+            {"question": "What condition must be satisfied for electromagnetic waves to propagate in a waveguide?", "options": ["Transverse Electric (TE) or Transverse Magnetic (TM) modes", "Only TE modes", "Only TM modes", "Longitudinal modes"], "answer": "Transverse Electric (TE) or Transverse Magnetic (TM) modes"},
+            {"question": "What is the relationship between electric and magnetic fields in an electromagnetic wave?", "options": ["Perpendicular to each other and the direction of propagation", "Parallel to each other", "At a 45-degree angle to each other", "Independent of each other"], "answer": "Perpendicular to each other and the direction of propagation"},
+            {"question": "What is the skin depth in a conductor, and how is it related to frequency?", "options": ["Depth at which current density drops, inversely proportional to square root of frequency", "Thickness of the conductor, directly proportional to frequency", "Depth of wave penetration, directly proportional to square root of frequency", "Depth of insulation, inversely proportional to frequency"], "answer": "Depth at which current density drops, inversely proportional to square root of frequency"}
+        ],
+        "Classical Mechanics": [
+            {"question": "What is the Lagrangian formulation of mechanics?", "options": ["L = Kinetic energy - Potential energy", "L = Force × Distance", "L = Potential energy + Kinetic energy", "L = Momentum × Velocity"], "answer": "L = Kinetic energy - Potential energy"},
+            {"question": "What is the significance of the Hamiltonian in mechanics?", "options": ["It represents the total energy of the system", "It represents the force applied", "It represents the displacement of a system", "It represents the momentum of a system"], "answer": "It represents the total energy of the system"},
+            {"question": "What is the moment of inertia for a solid sphere rotating about its diameter?", "options": ["(2/5)MR²", "(1/2)MR²", "(1/3)MR²", "(3/5)MR²"], "answer": "(2/5)MR²"},
+            {"question": "What is the relationship between torque and angular momentum?", "options": ["Torque = Rate of change of angular momentum", "Torque = Angular momentum × Velocity", "Torque = Angular momentum / Time", "Torque = Mass × Angular momentum"], "answer": "Torque = Rate of change of angular momentum"},
+            {"question": "What is the virial theorem in classical mechanics?", "options": ["The average kinetic energy is proportional to half the average potential energy for a stable system", "The work done is equal to the potential energy change", "Momentum is conserved in a closed system", "The energy of a system is constant over time"], "answer": "The average kinetic energy is proportional to half the average potential energy for a stable system"}
+        ],
+        "Quantum Mechanics": [
+            {"question": "What is the Schrödinger equation for a particle in a one-dimensional box?", "options": ["-ħ²/2m d²ψ/dx² = Eψ", "ħψ = Eψ", "ψ² = ħE", "Eψ = 0"], "answer": "-ħ²/2m d²ψ/dx² = Eψ"},
+            {"question": "What is the commutator of position (x) and momentum (p) operators?", "options": ["[x, p] = iħ", "[x, p] = 0", "[x, p] = -iħ", "[x, p] = ħ²"], "answer": "[x, p] = iħ"},
+            {"question": "What is the Heisenberg uncertainty principle?", "options": ["ΔxΔp ≥ ħ/2", "ΔxΔp ≤ ħ/2", "ΔxΔp = ħ", "ΔxΔp ≥ 2ħ"], "answer": "ΔxΔp ≥ ħ/2"},
+            {"question": "What is the wavefunction collapse in quantum mechanics?", "options": ["Reduction of a superposition to a single state upon measurement", "Loss of energy in a quantum system", "Increase of energy during photon emission", "A quantum wave transforming into a particle"], "answer": "Reduction of a superposition to a single state upon measurement"},
+            {"question": "What is the significance of eigenvalues in quantum mechanics?", "options": ["They represent measurable quantities like energy", "They represent wave amplitudes", "They represent the velocity of particles", "They represent the uncertainty in a measurement"], "answer": "They represent measurable quantities like energy"}
+        ],
+        "Chemistry": [
+            {"question": "What is the role of catalysts in chemical reactions?", "options": ["To lower activation energy and increase the reaction rate", "To increase the energy of reactants", "To change the products formed", "To decrease the temperature of the reaction"], "answer": "To lower activation energy and increase the reaction rate"},
+            {"question": "What is the Gibbs free energy equation?", "options": ["ΔG = ΔH - TΔS", "ΔG = ΔH + TΔS", "ΔG = TΔS - ΔH", "ΔG = ΔH / TΔS"], "answer": "ΔG = ΔH - TΔS"},
+            {"question": "What is the molecular orbital theory?", "options": ["Electrons are delocalized over the entire molecule", "Electrons are localized on specific atoms", "Electrons exist as point particles", "Electrons cannot pair in any orbital"], "answer": "Electrons are delocalized over the entire molecule"},
+            {"question": "What is the hybridization of carbon in benzene?", "options": ["sp²", "sp³", "sp", "sp³d"], "answer": "sp²"},
+            {"question": "What is the difference between a thermodynamic and a kinetic product?", "options": ["Thermodynamic product is more stable, while the kinetic product forms faster", "Kinetic product is more stable, while the thermodynamic product forms faster", "Both are equally stable", "They form under identical conditions"], "answer": "Thermodynamic product is more stable, while the kinetic product forms faster"}
+        ],
+        "Biology": [
+            {"question": "What is the function of telomeres in DNA?", "options": ["To protect the ends of chromosomes from degradation", "To code for proteins", "To initiate DNA replication", "To help in cell signaling"], "answer": "To protect the ends of chromosomes from degradation"},
+            {"question": "What is the role of the Krebs cycle in cellular respiration?", "options": ["To generate NADH and FADH₂ for the electron transport chain", "To break down glucose into pyruvate", "To produce oxygen for respiration", "To synthesize ATP directly"], "answer": "To generate NADH and FADH₂ for the electron transport chain"},
+            {"question": "What is the difference between mitosis and meiosis?", "options": ["Meiosis produces haploid cells; mitosis produces diploid cells", "Mitosis occurs in gametes; meiosis occurs in somatic cells", "Meiosis has one division; mitosis has two divisions", "Mitosis produces genetically unique cells; meiosis produces identical cells"], "answer": "Meiosis produces haploid cells; mitosis produces diploid cells"},
+            {"question": "What is the function of ribosomes in a cell?", "options": ["To synthesize proteins", "To store genetic material", "To produce energy", "To regulate cell division"], "answer": "To synthesize proteins"},
+            {"question": "What is the function of tRNA in protein synthesis?", "options": ["To carry amino acids to ribosomes", "To transcribe DNA into RNA", "To catalyze peptide bond formation", "To carry genetic code from the nucleus"], "answer": "To carry amino acids to ribosomes"}
+        ]
+    },
+
+    "VeryEasy": {
+        "Electrodynamics": [
+            {"question": "What does a light bulb need to work?", "options": ["Electricity", "Water", "Wind", "Fuel"], "answer": "Electricity"},
+            {"question": "What happens if you touch an electric wire?", "options": ["You might get a shock", "You turn it on", "It turns into a snake", "It disappears"], "answer": "You might get a shock"},
+            {"question": "What color are most electric wires inside gadgets?", "options": ["Red, black, or yellow", "Purple", "Transparent", "Gold"], "answer": "Red, black, or yellow"},
+            {"question": "What happens when you turn on a flashlight?", "options": ["Light comes out", "It makes a sound", "It turns into a mirror", "Nothing"], "answer": "Light comes out"},
+            {"question": "What powers the batteries in a remote control?", "options": ["Electric energy", "Magic", "Fuel", "Sunlight"], "answer": "Electric energy"}
+        ],
+        "Classical Mechanics": [
+            {"question": "What happens when you roll a ball down a hill?", "options": ["It goes down", "It stops", "It goes up", "It flies"], "answer": "It goes down"},
+            {"question": "What happens when you throw a ball into the air?", "options": ["It comes back down", "It keeps going up forever", "It disappears", "It explodes"], "answer": "It comes back down"},
+            {"question": "What makes things fall to the ground?", "options": ["Gravity", "Wind", "Sunlight", "Water"], "answer": "Gravity"},
+            {"question": "What do you call something that moves?", "options": ["Motion", "Sleeping", "Standing", "Sitting"], "answer": "Motion"},
+            {"question": "What happens when you push a toy car?", "options": ["It moves", "It breaks", "It grows", "It shrinks"], "answer": "It moves"}
+        ],
+        "Quantum Mechanics": [
+            {"question": "What is smaller than an atom?", "options": ["Electrons", "Molecules", "Rocks", "Planets"], "answer": "Electrons"},
+            {"question": "What is the smallest thing you can think of?", "options": ["Atoms", "Trees", "Cars", "Mountains"], "answer": "Atoms"},
+            {"question": "What do you call the tiny particles that make up everything?", "options": ["Atoms", "Clouds", "Colors", "Food"], "answer": "Atoms"},
+            {"question": "What do we call light that comes in tiny packets?", "options": ["Photons", "Atoms", "Magic", "Colors"], "answer": "Photons"},
+            {"question": "What is the name of the place where electrons live inside an atom?", "options": ["Orbit", "Sky", "Cave", "House"], "answer": "Orbit"}
+        ],
+        "Chemistry": [
+            {"question": "What happens when you mix baking soda and vinegar?", "options": ["It bubbles", "It freezes", "It turns blue", "It disappears"], "answer": "It bubbles"},
+            {"question": "What do you call the water we drink?", "options": ["H2O", "Sugar", "Salt", "Sand"], "answer": "H2O"},
+            {"question": "What color is most of the smoke from a fire?", "options": ["White or gray", "Green", "Blue", "Pink"], "answer": "White or gray"},
+            {"question": "What is ice made of?", "options": ["Water", "Sand", "Glass", "Air"], "answer": "Water"},
+            {"question": "What happens when you freeze water?", "options": ["It turns into ice", "It turns into steam", "It disappears", "It gets salty"], "answer": "It turns into ice"}
+        ],
+        "Biology": [
+            {"question": "What organ do we use to breathe?", "options": ["Lungs", "Heart", "Brain", "Stomach"], "answer": "Lungs"},
+            {"question": "What color is most grass?", "options": ["Green", "Blue", "Yellow", "Red"], "answer": "Green"},
+            {"question": "What do plants need to grow?", "options": ["Water, sunlight, and soil", "Magic", "Electricity", "Plastic"], "answer": "Water, sunlight, and soil"},
+            {"question": "What do you call the big organ in your head?", "options": ["Brain", "Heart", "Liver", "Lungs"], "answer": "Brain"},
+            {"question": "What do birds use to fly?", "options": ["Wings", "Hands", "Legs", "Fins"], "answer": "Wings"}
+        ]
+    }
+}

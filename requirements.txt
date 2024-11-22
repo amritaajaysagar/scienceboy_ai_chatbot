@@ -1,0 +1,15 @@
+Flask
+sympy
+pyttsx3
+speechrecognition
+beautifulsoup4
+requests
+langchain
+requests
+numpy
+pandas
+transformers
+torch
+SpeechRecognition
+pydub
+sqlalchemy<2.0
