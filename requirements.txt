@@ -5,11 +5,10 @@ speechrecognition
 beautifulsoup4
 requests
 langchain
-requests
-numpy
-pandas
-transformers
+numpy<2.0.0  # Ensure compatibility with spacy
+transformers<4.0  # Adjust this if you need a specific version
 torch
-SpeechRecognition
 pydub
 sqlalchemy<2.0
+wikipedia
+spacy==3.2.4  # Specify a version compatible with your Python version

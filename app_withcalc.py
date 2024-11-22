@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect, url_for
 import json
 import random
 import nltk
@@ -6,7 +6,7 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 from language_selection import get_language_options, get_language_by_code
-from greetings import load_greetings,load_user_data,greet_and_create_profile,save_user_data
+from greetings import load_greetings, load_user_data, greet_and_create_profile, save_user_data
 from science_answers import answer_science_question
 from science_quiz import run_quiz
 
@@ -32,15 +32,11 @@ try:
 except FileNotFoundError:
     pass
 
-
-
 @app.route("/")
 def index():
-    # Check if language is set in user data
     language = user_data.get('language', 'en')
-    greeting = load_greetings(language)  # Load a random greeting
+    greeting = load_greetings(language)
     return render_template("chat.html", greeting=greeting, language_options=get_language_options())
-
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -48,36 +44,34 @@ def chat():
     if not user_message:
         return jsonify({"error": "Message is required"}), 400
 
-    # Tokenize the user message
     tokens = word_tokenize(user_message)
     stop_words = set(stopwords.words('english'))
     filtered_tokens = [word for word in tokens if word not in stop_words]
 
-    # Handle different conversation stages based on user_data
     if 'name' not in user_data:
         greeting = load_greetings(user_data.get('language', 'en'))
         response = f"{greeting} What's your name?"
-        user_data['name'] = user_message  # Store name in user_data
+        user_data['name'] = user_message
     elif 'age' not in user_data:
         response = f"Nice to meet you, {user_data['name']}! How old are you?"
-        user_data['age'] = int(user_message)  # Store age in user_data
+        user_data['age'] = int(user_message)
     elif 'selected_option' not in user_data:
-        response = f"Hi {user_data['name']}, what would you like to do today? 1. Let's Chat or 2. Take a Science Quiz?"
-        user_data['selected_option'] = user_message  # Store selected option
+        response = f"Hi {user_data['name']}, what would you like to do today? 1. Let's Chat, 2. Take a Science Quiz, or 3. Use the Scientific Calculator?"
+        user_data['selected_option'] = user_message
     else:
         if user_data['selected_option'] == '1':
             response = answer_science_question(user_message)
         elif user_data['selected_option'] == '2':
             try:
-                num_questions = 5  # Default number of questions
-                score_data = run_quiz(user_data['age'], num_questions)  # Call the run_quiz function
-                
+                num_questions = 5
+                score_data = run_quiz(user_data['age'], num_questions)
                 response = f"You scored {score_data['score']} out of {score_data['total_questions']}! {score_data['feedback']}"
-                user_data['quiz_score'] = score_data['score']  # Update quiz score in user data
+                user_data['quiz_score'] = score_data['score']
             except Exception as e:
-                response = f"An error occurred while running the quiz: {str(e)}"
+                response = f"An error occurred while running the quiz: {str(e )}"
+        elif user_data['selected_option'] == '3':
+            return redirect("http://localhost:5001/calculator")  # Redirect to the calculator app
 
-    # Save user data after each interaction
     with open('user_data.json', 'w') as f:
         json.dump(user_data, f)
 

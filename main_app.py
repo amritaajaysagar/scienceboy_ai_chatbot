@@ -6,11 +6,9 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 from language_selection import get_language_options, get_language_by_code
-from greetings import get_greeting
-from age_group import get_age_group_options, get_age_group_by_code
-from profile import create_profile, get_profiles, is_profile_full
-from science_answer import answer_science_question
-from science_quiz import get_topics, get_random_questions, grade_quiz, get_feedback
+from greetings import load_greetings,load_user_data,greet_and_create_profile,save_user_data
+from science_answers import answer_science_question
+from science_quiz import run_quiz
 
 # Download NLTK resources if you haven't already
 nltk.download('punkt')
@@ -35,11 +33,12 @@ except FileNotFoundError:
     pass
 
 
-@app.route("/")
+
+app.route("/")
 def index():
     # Check if language is set in user data
     language = user_data.get('language', 'en')
-    greeting = get_greeting(language)
+    greeting = load_greetings(language)  # Load a random greeting
     return render_template("chat.html", greeting=greeting, language_options=get_language_options())
 
 
@@ -76,12 +75,17 @@ def chat():
                 response += f"\nYou can also visit NASA's website for more information: https://www.nasa.gov/"
         elif user_data['selected_option'] == '2':
             # Use science_quiz.py to handle quiz
-            questions = get_random_questions(question_bank, 5)
-            score, user_answers = grade_quiz(questions, user_message)
-            feedback = get_feedback(user_answers, question_bank)
-            response = f"You scored {score} out of 5! {feedback}"
-            # Update user data with quiz score (optional)
-            user_data['quiz_score'] = score
+            try:
+                # Get the topic choice from the user
+                topic_choice = int(user_message) - 1  # Assuming user sends the topic choice directly
+                num_questions = 5  # Default number of questions
+                score_data = run_quiz(user_data['age'], num_questions, topic_choice)  # Call the run_quiz function
+                
+                # Prepare the response based on the returned data
+                response = f"You scored {score_data['score']} out of {score_data['total_questions']}! {score_data['feedback']}"
+                user_data['quiz_score'] = score_data['score']  # Update quiz score in user data
+            except Exception as e:
+                response = f"An error occurred while running the quiz: {str(e)}"
 
     # Save user data after each interaction
     with open('user_data.json', 'w') as f:
@@ -89,10 +93,12 @@ def chat():
 
     return jsonify({"bot_message": response})
 
-
 @app.route("/set_language/<language_code>")
 def set_language(language_code):
     # Update user data with selected language
     user_data['language'] = language_code
     with open('user_data.json', 'w') as f:
         json.dump(user_data, f)
+
+if __name__ == "__main__":
+    app.run(debug=True)

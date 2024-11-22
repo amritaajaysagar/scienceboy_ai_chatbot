@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Scientific Calculator</title>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Scientific Calculator</h1>
+        <form action="/calculate" method="post">
+            <input type="text" name="expression" placeholder="Enter expression" required>
+            <button type="submit">Calculate</button>
+        </form>
+        <div class="result">
+            <h2>Result: <span id="result"></span></h2>
+        </div>
+    </div>
+    <script>
+        const form = document.querySelector('form');
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch('/calculate', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.text();
+            document.getElementById('result').innerText = result;
+        };
+    </script>
+</body>
+</html>
