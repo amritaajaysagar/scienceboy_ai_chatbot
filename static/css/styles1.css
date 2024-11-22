@@ -1,0 +1,86 @@
+body {
+    background-color: #add8e6; /* Light blue background */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Kid-friendly font */
+    color: #333; /* Dark text for readability */
+    margin: 0;
+    padding: 20px;
+}
+
+.chat-container {
+    display: flex; /* Align character and bubble */
+    align-items: flex-start; /* Align items at the start */
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.character-icon {
+    width: 50px; /* Adjust size as needed */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%; /* Circular image */
+    margin-right: 10px; /* Space between character and bubble */
+    display: inline-block; /* Align with bubble */
+}
+
+.chat-box {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    height: 200px;
+    overflow-y: auto;
+    background: #fafafa;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #f0e68c; /* Light yellow for the bubble */
+    border-radius: 15px; /* Rounded corners */
+    padding: 15px;
+    margin: 10px 0;
+    max-width: 300px; /* Limit the width of the bubble */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 100%; /* Position above the bubble */
+    left: 20px; /* Center the tail */
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent #f0e68c transparent; /* Triangle effect */
+}
+
+.bot-bubble {
+    background: #c6f7d0; /* Light green for bot's bubble */
+}
+
+.chat-input {
+    display: flex;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #bfbbbb;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(114, 227, 163, 0.1);
+}
+
+button {
+    margin-left: 10px;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
