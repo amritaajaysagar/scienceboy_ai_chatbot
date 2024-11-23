@@ -1,0 +1,112 @@
+body {
+    background: linear-gradient(to bottom, #f9f7fe, #d9f3fc); /* Gradient for playful background */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun font */
+    color: #333; /* Readable text */
+    margin: 0;
+    padding: 20px;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+}
+
+.character-icon {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    animation: bounce 2s infinite; /* Fun animation */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+h2 {
+    font-size: 1.8em;
+    color: #4a90e2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.chat-box {
+    border: 2px solid #4a90e2;
+    border-radius: 15px;
+    padding: 10px;
+    margin-bottom: 20px;
+    height: 300px;
+    overflow-y: auto;
+    background: #fafafa;
+}
+
+.speech-bubble {
+    position: relative;
+    background: #ffeb99; /* Yellow for user */
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 0;
+    max-width: 80%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.1em;
+}
+
+.user-bubble {
+    align-self: flex-end;
+    background: #ffd699; /* Orange for user */
+}
+
+.bot-bubble {
+    align-self: flex-start;
+    background: #d4f4c5; /* Green for bot */
+}
+
+.speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent inherit transparent;
+}
+
+.chat-input {
+    display: flex;
+    width: 100%;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #4a90e2;
+    border-radius: 10px;
+    font-size: 1.1em;
+    outline: none;
+}
+
+button {
+    margin-left: 10px;
+    padding: 10px;
+    background: #ff6b6b; /* Fun red button */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+button:hover {
+    background: #ff4c4c; /* Darker hover effect */
+}

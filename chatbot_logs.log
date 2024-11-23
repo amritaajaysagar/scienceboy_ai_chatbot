@@ -1,0 +1,48 @@
+2024-11-22 20:03:58,675 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 20:03:58,675 - [33mPress CTRL+C to quit[0m
+2024-11-22 20:03:58,679 -  * Restarting with stat
+2024-11-22 20:04:08,655 -  * Debugger is active!
+2024-11-22 20:04:08,668 -  * Debugger PIN: 102-744-878
+2024-11-22 20:07:43,494 -  * Detected change in 'C:\\Users\\Sarat\\OneDrive - Thompson Rivers University\\School\\Semester 3\\ADSC3710_01 - Artificial Intelligence\\scienceboy_ai_chatbot\\app_chatter_improvement3.py', reloading
+2024-11-22 20:07:44,309 -  * Restarting with stat
+2024-11-22 20:07:54,213 -  * Debugger is active!
+2024-11-22 20:07:54,226 -  * Debugger PIN: 102-744-878
+2024-11-22 20:08:14,353 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-11-22 20:08:14,353 - [33mPress CTRL+C to quit[0m
+2024-11-22 20:08:14,356 -  * Restarting with stat
+2024-11-22 20:08:23,436 -  * Debugger is active!
+2024-11-22 20:08:23,448 -  * Debugger PIN: 102-744-878
+2024-11-22 20:12:17,513 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.99:5000
+2024-11-22 20:12:17,513 - [33mPress CTRL+C to quit[0m
+2024-11-22 20:12:17,517 -  * Restarting with stat
+2024-11-22 20:12:33,864 -  * Debugger is active!
+2024-11-22 20:12:33,885 -  * Debugger PIN: 102-744-878
+2024-11-22 20:23:05,434 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.99:5000
+2024-11-22 20:23:05,434 - [33mPress CTRL+C to quit[0m
+2024-11-22 20:23:05,436 -  * Restarting with stat
+2024-11-22 20:23:15,244 -  * Debugger is active!
+2024-11-22 20:23:15,259 -  * Debugger PIN: 102-744-878
+2024-11-22 20:26:57,049 - 127.0.0.1 - - [22/Nov/2024 20:26:57] "GET / HTTP/1.1" 200 -
+2024-11-22 20:26:57,104 - 127.0.0.1 - - [22/Nov/2024 20:26:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 20:26:57,116 - 127.0.0.1 - - [22/Nov/2024 20:26:57] "[36mGET /static/images/cute-character.png HTTP/1.1[0m" 304 -
+2024-11-22 20:27:03,479 - Beginning search for close text match
+2024-11-22 20:27:03,479 - Processing search results
+2024-11-22 20:27:03,645 - Similar text found: Hello 1.0
+2024-11-22 20:27:06,926 - Using "Hello" as a close match to "Hello" with a confidence of 1.0
+2024-11-22 20:27:10,680 - Selecting response from 147 optimal responses.
+2024-11-22 20:27:10,681 - Selecting first response from list of 147 options.
+2024-11-22 20:27:10,681 - Response selected. Using "Hi"
+2024-11-22 20:27:10,681 - BestMatch selected "Hi" as a response with a confidence of 1.0
+2024-11-22 20:27:10,682 - Not processing the statement using MathematicalEvaluation
+2024-11-22 20:27:10,682 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 20:27:12,513 - Adding "Hello" as a response to "Thank you for being considerate"
+2024-11-22 20:27:12,608 - User anonymous: Hello | Bot: I'm still learning. Could you clarify?
+2024-11-22 20:27:12,609 - 127.0.0.1 - - [22/Nov/2024 20:27:12] "POST /chat HTTP/1.1" 200 -

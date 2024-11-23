@@ -110,3 +110,19 @@ button {
 button:hover {
     background: #ff4c4c; /* Darker hover effect */
 }
+
+/* New styles for feedback buttons */
+.feedback-buttons {
+    display: flex; /* Align buttons in a row */
+    margin-top: 10px; /* Space above the buttons */
+}
+
+.feedback-buttons button {
+    margin: 0 5px; /* Space between feedback buttons */
+    background: #6bcf6b; /* Green for good feedback */
+    color: white;
+}
+
+.feedback-buttons button:hover {
+    background: #4caf50; /* Darker green on hover */
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid-Friendly Chatbot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <img src="static/images/cute-character.png" alt="Cute Character" class="character-icon">
+        <h2>🧪 Science-bot 🤖</h2>
+        <div id="chat-box" class="chat-box">
+            <!-- Speech bubbles will be appended here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send 📨</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userMessage = document.getElementById("user-message").value;
+            if (!userMessage.trim()) return;
+
+            // Append user's message to chat
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble user-bubble"><p>🧍 You: ${userMessage}</p></div>`;
+
+            // Send POST request to Flask backend
+            fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message: userMessage }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                const botMessage = data.bot_message || "Error communicating with bot.";
+                chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: ${botMessage}</p></div>`;
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+            })
+            .catch(error => {
+                chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: Error communicating with server.</p></div>`;
+                console.error("Error:", error);
+            });
+
+            // Clear the input field
+            document.getElementById("user-message").value = "";
+        }
+    </script>
+</body>
+</html>

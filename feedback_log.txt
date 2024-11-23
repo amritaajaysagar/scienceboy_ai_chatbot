@@ -1,0 +1,20 @@
+:User  Hello | Feedback: good
+:User  What is a star? | Feedback: bad
+:User  who was albert einstein? | Feedback: bad
+:User  ok bye | Feedback: bad
+:User  hello | Feedback: good
+:User  how are you ? | Feedback: bad
+:User  What is a black hole? | Feedback: bad
+:User  what are you saying ? | Feedback: good
+User: Hello | Feedback: good
+User: What is a blackhole ? | Feedback: bad
+User: Cooking is fun for some people | Feedback: bad
+User: What is science? | Feedback: good
+User: Who is Albert Einstein? | Feedback: good
+User: What is the theory of evolution? | Feedback: good
+User: who is albert einstein ? | Feedback: good
+User: what is big bang? | Feedback: bad
+User: Hello | Feedback: good
+User: How are you ? | Feedback: bad
+User: Where do you live ? | Feedback: bad
+User: Thank you for being considerate | Feedback: bad

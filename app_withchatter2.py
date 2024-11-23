@@ -1,0 +1,55 @@
+from flask import Flask, request, jsonify, render_template
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+import nltk
+
+# Download NLTK resources if you haven't already
+nltk.download('punkt')
+nltk.download('stopwords')
+
+app = Flask(__name__)
+
+# Create a new chatbot instance
+chatbot = ChatBot(
+    'MyChatBot',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    logic_adapters=[
+        'chatterbot.logic.BestMatch'
+    ]
+)
+
+# Train the chatbot with the English corpus
+trainer = ChatterBotCorpusTrainer(chatbot)
+trainer.train('chatterbot.corpus.english')
+print("Chatbot trained successfully.")
+
+@app.route("/")
+def index():
+    return render_template("chat.html")
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    try:
+        # Check if the request contains JSON data
+        if not request.is_json:
+            return jsonify({"error": "Invalid JSON format"}), 400
+        
+        # Get the user message from JSON
+        user_message = request.json.get("message")
+        if not user_message:
+            return jsonify({"error": "Message cannot be empty"}), 400
+        
+        # Get chatbot's response
+        bot_response = chatbot.get_response(user_message)
+        return jsonify({"bot_message": str(bot_response)})
+    
+    except Exception as e:
+        # Print the full traceback for debugging purposes
+        import traceback
+        traceback.print_exc()
+
+        # Return a generic error message to the client
+        return jsonify({"error": "Something went wrong on the server"}), 500
+
+if __name__ == "__main__":
+    app.run(debug=True)
