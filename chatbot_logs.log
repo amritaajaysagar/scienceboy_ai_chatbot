@@ -46,3 +46,328 @@
 2024-11-22 20:27:12,513 - Adding "Hello" as a response to "Thank you for being considerate"
 2024-11-22 20:27:12,608 - User anonymous: Hello | Bot: I'm still learning. Could you clarify?
 2024-11-22 20:27:12,609 - 127.0.0.1 - - [22/Nov/2024 20:27:12] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:09:38,716 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.99:5000
+2024-11-22 21:09:38,717 - [33mPress CTRL+C to quit[0m
+2024-11-22 21:09:38,719 -  * Restarting with stat
+2024-11-22 21:09:48,309 -  * Debugger is active!
+2024-11-22 21:09:48,327 -  * Debugger PIN: 102-744-878
+2024-11-22 21:10:55,779 -  * Detected change in 'C:\\Users\\Sarat\\OneDrive - Thompson Rivers University\\School\\Semester 3\\ADSC3710_01 - Artificial Intelligence\\scienceboy_ai_chatbot\\app_chatter_improvement3.py', reloading
+2024-11-22 21:10:56,674 -  * Restarting with stat
+2024-11-22 21:11:26,328 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.1.99:5001
+2024-11-22 21:11:26,329 - [33mPress CTRL+C to quit[0m
+2024-11-22 21:11:26,332 -  * Restarting with stat
+2024-11-22 21:11:35,613 -  * Debugger is active!
+2024-11-22 21:11:35,629 -  * Debugger PIN: 102-744-878
+2024-11-22 21:13:47,258 - 192.168.1.99 - - [22/Nov/2024 21:13:47] "GET / HTTP/1.1" 200 -
+2024-11-22 21:13:47,314 - 192.168.1.99 - - [22/Nov/2024 21:13:47] "GET /static/css/styles.css HTTP/1.1" 200 -
+2024-11-22 21:13:47,326 - 192.168.1.99 - - [22/Nov/2024 21:13:47] "GET /static/images/cute-character.png HTTP/1.1" 200 -
+2024-11-22 21:13:48,135 - 192.168.1.99 - - [22/Nov/2024 21:13:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-22 21:13:53,399 - Beginning search for close text match
+2024-11-22 21:13:53,400 - Processing search results
+2024-11-22 21:13:53,554 - Similar text found: Hello 1.0
+2024-11-22 21:13:55,656 - Using "Hello" as a close match to "Hello" with a confidence of 1.0
+2024-11-22 21:13:57,996 - Selecting response from 159 optimal responses.
+2024-11-22 21:13:57,997 - Selecting first response from list of 159 options.
+2024-11-22 21:13:57,997 - Response selected. Using "Hi"
+2024-11-22 21:13:57,998 - BestMatch selected "Hi" as a response with a confidence of 1.0
+2024-11-22 21:13:57,998 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:13:57,999 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:13:59,140 - Adding "Hello" as a response to "Hello"
+2024-11-22 21:13:59,185 - User anonymous: Hello | Bot: That's an interesting question. Let me look into it for you.
+2024-11-22 21:13:59,186 - 192.168.1.99 - - [22/Nov/2024 21:13:59] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:14:09,949 - Context for anonymous: Hello
+2024-11-22 21:14:09,951 - Beginning search for close text match
+2024-11-22 21:14:09,951 - Processing search results
+2024-11-22 21:14:10,059 - Similar text found: So what's your favorite color? 0.33
+2024-11-22 21:14:10,066 - Similar text found: Of what? 0.71
+2024-11-22 21:14:12,384 - Using "So what's your favorite color?" as a close match to "What ?" with a confidence of 0.33
+2024-11-22 21:14:13,914 - Selecting response from 53 optimal responses.
+2024-11-22 21:14:13,915 - Selecting first response from list of 53 options.
+2024-11-22 21:14:13,915 - Response selected. Using "Blue"
+2024-11-22 21:14:13,915 - BestMatch selected "Blue" as a response with a confidence of 0.33
+2024-11-22 21:14:13,916 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:14:13,916 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:14:15,102 - Adding "What ?" as a response to "Hello"
+2024-11-22 21:14:15,153 - User anonymous: What ? | Bot: Blue
+2024-11-22 21:14:15,155 - 192.168.1.99 - - [22/Nov/2024 21:14:15] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:14:44,763 - 192.168.1.99 - - [22/Nov/2024 21:14:44] "POST /feedback HTTP/1.1" 200 -
+2024-11-22 21:15:08,739 - Context for anonymous: What ?
+2024-11-22 21:15:08,742 - Beginning search for close text match
+2024-11-22 21:15:08,742 - Processing search results
+2024-11-22 21:15:08,879 - Similar text found: :User What is the speed of light? Bot: The speed of light in a vacuum is approximately 299,792 kilometers per second (or about 186,282 miles per second). 0.3
+2024-11-22 21:15:08,901 - Similar text found: What is the speed of light? 1.0
+2024-11-22 21:15:08,902 - Using "What is the speed of light?" as a close match to "What is the speed of light?" with a confidence of 1.0
+2024-11-22 21:15:10,074 - Selecting response from 17 optimal responses.
+2024-11-22 21:15:10,075 - Selecting first response from list of 17 options.
+2024-11-22 21:15:10,075 - Response selected. Using "The speed of light in a vacuum is approximately 299,792 kilometers per second (or about 186,282 miles per second)."
+2024-11-22 21:15:10,075 - BestMatch selected "The speed of light in a vacuum is approximately 299,792 kilometers per second (or about 186,282 miles per second)." as a response with a confidence of 1.0
+2024-11-22 21:15:10,075 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:15:10,076 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:15:11,147 - Adding "What is the speed of light?" as a response to "What ?"
+2024-11-22 21:15:11,182 - User anonymous: What is the speed of light? | Bot: The speed of light in a vacuum is approximately 299,792 kilometers per second (or about 186,282 miles per second).
+2024-11-22 21:15:11,182 - 192.168.1.99 - - [22/Nov/2024 21:15:11] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:15:24,569 - 192.168.1.99 - - [22/Nov/2024 21:15:24] "POST /feedback HTTP/1.1" 200 -
+2024-11-22 21:15:37,129 - Context for anonymous: What is the speed of light?
+2024-11-22 21:15:37,131 - Beginning search for close text match
+2024-11-22 21:15:37,131 - Processing search results
+2024-11-22 21:15:37,264 - Similar text found: No, lots of people improve my brain. 0.29
+2024-11-22 21:15:37,902 - Similar text found: How do plants grow? 1.0
+2024-11-22 21:15:37,903 - Using "How do plants grow?" as a close match to "How do plants grow?" with a confidence of 1.0
+2024-11-22 21:15:39,107 - Selecting response from 17 optimal responses.
+2024-11-22 21:15:39,107 - Selecting first response from list of 17 options.
+2024-11-22 21:15:39,107 - Response selected. Using "Plants grow through a process called photosynthesis, where they convert sunlight into energy."
+2024-11-22 21:15:39,108 - BestMatch selected "Plants grow through a process called photosynthesis, where they convert sunlight into energy." as a response with a confidence of 1.0
+2024-11-22 21:15:39,108 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:15:39,108 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:15:40,112 - Adding "How do plants grow?" as a response to "What is the speed of light?"
+2024-11-22 21:15:40,144 - User anonymous: How do plants grow? | Bot: Plants grow through a process called photosynthesis, where they convert sunlight into energy.
+2024-11-22 21:15:40,144 - 192.168.1.99 - - [22/Nov/2024 21:15:40] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:15:43,073 - 192.168.1.99 - - [22/Nov/2024 21:15:43] "POST /feedback HTTP/1.1" 200 -
+2024-11-22 21:19:59,627 - Context for anonymous: How do plants grow?
+2024-11-22 21:19:59,629 - Beginning search for close text match
+2024-11-22 21:19:59,629 - Processing search results
+2024-11-22 21:19:59,733 - Using "What is the color of the sky ?" as a close match to "What is the color of the sky ?" with a confidence of 0
+2024-11-22 21:20:00,780 - No responses found. Generating alternate response list.
+2024-11-22 21:20:00,849 - No known response to the input was found. Selecting a random response.
+2024-11-22 21:20:00,850 - BestMatch selected "you try to hide it" as a response with a confidence of 0
+2024-11-22 21:20:00,850 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:20:00,850 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:20:01,903 - Adding "What is the color of the sky ?" as a response to "How do plants grow?"
+2024-11-22 21:20:01,934 - User anonymous: What is the color of the sky ? | Bot: you try to hide it
+2024-11-22 21:20:01,935 - 192.168.1.99 - - [22/Nov/2024 21:20:01] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:20:07,152 - 192.168.1.99 - - [22/Nov/2024 21:20:07] "POST /feedback HTTP/1.1" 200 -
+2024-11-22 21:20:38,517 - Context for anonymous: What is the color of the sky ?
+2024-11-22 21:20:38,519 - Beginning search for close text match
+2024-11-22 21:20:38,519 - Processing search results
+2024-11-22 21:20:38,587 - Using "Thats not a correct response" as a close match to "Thats not a correct response" with a confidence of 0
+2024-11-22 21:20:39,600 - No responses found. Generating alternate response list.
+2024-11-22 21:20:39,678 - No known response to the input was found. Selecting a random response.
+2024-11-22 21:20:39,678 - BestMatch selected "Complex is better than complicated." as a response with a confidence of 0
+2024-11-22 21:20:39,678 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:20:39,678 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:20:40,783 - Adding "Thats not a correct response" as a response to "What is the color of the sky ?"
+2024-11-22 21:20:40,816 - User anonymous: Thats not a correct response  | Bot: Complex is better than complicated.
+2024-11-22 21:20:40,817 - 192.168.1.99 - - [22/Nov/2024 21:20:40] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:21:05,669 - Context for anonymous: Thats not a correct response 
+2024-11-22 21:21:05,671 - Beginning search for close text match
+2024-11-22 21:21:05,671 - Processing search results
+2024-11-22 21:21:05,819 - Similar text found: What is the color of the sky ? 0.72
+2024-11-22 21:21:05,819 - Using "What is the color of the sky ?" as a close match to "The color of the sky is blue" with a confidence of 0.72
+2024-11-22 21:21:06,869 - No responses found. Generating alternate response list.
+2024-11-22 21:21:06,934 - No known response to the input was found. Selecting a random response.
+2024-11-22 21:21:06,934 - BestMatch selected "John said he follows a saying, to get a friend I must be a friend." as a response with a confidence of 0
+2024-11-22 21:21:06,934 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:21:06,935 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:21:08,007 - Adding "The color of the sky is blue" as a response to "Thats not a correct response"
+2024-11-22 21:21:08,038 - User anonymous: The color of the sky is blue  | Bot: John said he follows a saying, to get a friend I must be a friend.
+2024-11-22 21:21:08,038 - 192.168.1.99 - - [22/Nov/2024 21:21:08] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:21:45,055 - 192.168.1.99 - - [22/Nov/2024 21:21:45] "POST /feedback HTTP/1.1" 200 -
+2024-11-22 21:21:58,488 - Context for anonymous: The color of the sky is blue 
+2024-11-22 21:21:58,491 - Beginning search for close text match
+2024-11-22 21:21:58,492 - Processing search results
+2024-11-22 21:21:58,604 - Similar text found: ok bye 1.0
+2024-11-22 21:21:58,621 - Using "ok bye" as a close match to "ok bye" with a confidence of 1.0
+2024-11-22 21:21:59,657 - No responses found. Generating alternate response list.
+2024-11-22 21:21:59,736 - No known response to the input was found. Selecting a random response.
+2024-11-22 21:21:59,736 - BestMatch selected "you are crazy" as a response with a confidence of 0
+2024-11-22 21:21:59,736 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:21:59,737 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:22:00,839 - Adding "ok bye" as a response to "The color of the sky is blue"
+2024-11-22 21:22:00,870 - User anonymous: ok bye | Bot: you are crazy
+2024-11-22 21:22:00,870 - 192.168.1.99 - - [22/Nov/2024 21:22:00] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:22:03,225 - 192.168.1.99 - - [22/Nov/2024 21:22:03] "POST /feedback HTTP/1.1" 200 -
+2024-11-22 21:22:10,280 - Context for anonymous: ok bye
+2024-11-22 21:22:10,283 - Beginning search for close text match
+2024-11-22 21:22:10,283 - Processing search results
+2024-11-22 21:22:10,343 - Using "exit" as a close match to "exit" with a confidence of 0
+2024-11-22 21:22:11,403 - No responses found. Generating alternate response list.
+2024-11-22 21:22:11,466 - No known response to the input was found. Selecting a random response.
+2024-11-22 21:22:11,467 - BestMatch selected "what do you get when you cross a crazy cow and a banned parrot?" as a response with a confidence of 0
+2024-11-22 21:22:11,467 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:22:11,467 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:22:12,590 - Adding "exit" as a response to "ok bye"
+2024-11-22 21:22:12,620 - User anonymous: exit | Bot: what do you get when you cross a crazy cow and a banned parrot?
+2024-11-22 21:22:12,621 - 192.168.1.99 - - [22/Nov/2024 21:22:12] "POST /chat HTTP/1.1" 200 -
+2024-11-22 21:28:40,678 - Exception during reset or similar
+Traceback (most recent call last):
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 751, in _finalize_fairy
+    fairy._reset(pool)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 938, in _reset
+    pool._dialect.do_rollback(self)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\engine\default.py", line 486, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 13268 and this is thread id 4232.
+2024-11-22 21:28:40,741 - Exception closing connection <sqlite3.Connection object at 0x0000016C934C88F0>
+Traceback (most recent call last):
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 751, in _finalize_fairy
+    fairy._reset(pool)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 938, in _reset
+    pool._dialect.do_rollback(self)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\engine\default.py", line 486, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 13268 and this is thread id 4232.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 342, in _close_connection
+    self._dialect.do_close(connection)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\engine\default.py", line 492, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 13268 and this is thread id 4232.
+2024-11-22 21:28:40,743 - Exception during reset or similar
+Traceback (most recent call last):
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 751, in _finalize_fairy
+    fairy._reset(pool)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 938, in _reset
+    pool._dialect.do_rollback(self)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\engine\default.py", line 486, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 6568 and this is thread id 4232.
+2024-11-22 21:28:40,744 - Exception closing connection <sqlite3.Connection object at 0x0000016C934FB030>
+Traceback (most recent call last):
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 751, in _finalize_fairy
+    fairy._reset(pool)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 938, in _reset
+    pool._dialect.do_rollback(self)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\engine\default.py", line 486, in do_rollback
+    dbapi_connection.rollback()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 6568 and this is thread id 4232.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\pool.py", line 342, in _close_connection
+    self._dialect.do_close(connection)
+  File "C:\Users\Sarat\miniforge3\envs\chatterbotenv\lib\site-packages\sqlalchemy\engine\default.py", line 492, in do_close
+    dbapi_connection.close()
+sqlite3.ProgrammingError: SQLite objects created in a thread can only be used in that same thread. The object was created in thread id 6568 and this is thread id 4232.
+2024-11-22 21:35:46,352 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.1.99:5001
+2024-11-22 21:35:46,353 - [33mPress CTRL+C to quit[0m
+2024-11-22 21:35:46,357 -  * Restarting with stat
+2024-11-22 21:35:56,628 -  * Debugger is active!
+2024-11-22 21:35:56,649 -  * Debugger PIN: 102-744-878
+2024-11-22 21:36:14,265 - 127.0.0.1 - - [22/Nov/2024 21:36:14] "GET / HTTP/1.1" 200 -
+2024-11-22 21:36:14,421 - 127.0.0.1 - - [22/Nov/2024 21:36:14] "GET /static/css/styles.css HTTP/1.1" 200 -
+2024-11-22 21:36:14,427 - 127.0.0.1 - - [22/Nov/2024 21:36:14] "GET /static/images/cute-character.png HTTP/1.1" 200 -
+2024-11-22 21:36:15,188 - 127.0.0.1 - - [22/Nov/2024 21:36:15] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-22 21:36:22,677 - Beginning search for close text match
+2024-11-22 21:36:22,678 - Processing search results
+2024-11-22 21:36:22,791 - Similar text found: Hello 1.0
+2024-11-22 21:36:25,079 - Using "Hello" as a close match to "Hello" with a confidence of 1.0
+2024-11-22 21:36:27,959 - Selecting response from 165 optimal responses.
+2024-11-22 21:36:27,959 - Selecting first response from list of 165 options.
+2024-11-22 21:36:27,959 - Response selected. Using "Hi"
+2024-11-22 21:36:27,960 - BestMatch selected "Hi" as a response with a confidence of 1.0
+2024-11-22 21:36:27,960 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:36:27,961 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:36:29,266 - Adding "Hello" as a response to "exit"
+2024-11-22 21:36:29,316 - Error in /chat endpoint: name 'response' is not defined
+2024-11-22 21:36:29,317 - 127.0.0.1 - - [22/Nov/2024 21:36:29] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-22 21:36:34,332 - 127.0.0.1 - - [22/Nov/2024 21:36:34] "POST /feedback HTTP/1.1" 200 -
+2024-11-22 21:36:43,554 - Context for anonymous: Hello
+2024-11-22 21:36:43,557 - Beginning search for close text match
+2024-11-22 21:36:43,558 - Processing search results
+2024-11-22 21:36:43,664 - Similar text found: Hello 1.0
+2024-11-22 21:36:46,138 - Using "Hello" as a close match to "HEllo" with a confidence of 1.0
+2024-11-22 21:36:49,035 - Selecting response from 165 optimal responses.
+2024-11-22 21:36:49,036 - Selecting first response from list of 165 options.
+2024-11-22 21:36:49,036 - Response selected. Using "Hi"
+2024-11-22 21:36:49,036 - BestMatch selected "Hi" as a response with a confidence of 1.0
+2024-11-22 21:36:49,037 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:36:49,038 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:36:50,389 - Adding "HEllo" as a response to "Hello"
+2024-11-22 21:36:50,433 - Error in /chat endpoint: name 'response' is not defined
+2024-11-22 21:36:50,434 - 127.0.0.1 - - [22/Nov/2024 21:36:50] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-22 21:36:57,775 - 192.168.1.99 - - [22/Nov/2024 21:36:57] "GET / HTTP/1.1" 200 -
+2024-11-22 21:36:57,895 - 192.168.1.99 - - [22/Nov/2024 21:36:57] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 21:36:57,896 - 192.168.1.99 - - [22/Nov/2024 21:36:57] "[36mGET /static/images/cute-character.png HTTP/1.1[0m" 304 -
+2024-11-22 21:37:02,066 - Context for anonymous: HEllo
+2024-11-22 21:37:02,067 - Beginning search for close text match
+2024-11-22 21:37:02,068 - Processing search results
+2024-11-22 21:37:02,179 - Similar text found: Hello 1.0
+2024-11-22 21:37:04,604 - Using "Hello" as a close match to "Hello" with a confidence of 1.0
+2024-11-22 21:37:07,253 - Selecting response from 165 optimal responses.
+2024-11-22 21:37:07,253 - Selecting first response from list of 165 options.
+2024-11-22 21:37:07,253 - Response selected. Using "Hi"
+2024-11-22 21:37:07,253 - BestMatch selected "Hi" as a response with a confidence of 1.0
+2024-11-22 21:37:07,253 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:37:07,253 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:37:08,534 - Adding "Hello" as a response to "HEllo"
+2024-11-22 21:37:08,578 - Error in /chat endpoint: name 'response' is not defined
+2024-11-22 21:37:08,579 - 192.168.1.99 - - [22/Nov/2024 21:37:08] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-22 21:37:46,337 - Context for anonymous: Hello
+2024-11-22 21:37:46,339 - Beginning search for close text match
+2024-11-22 21:37:46,339 - Processing search results
+2024-11-22 21:37:46,467 - Similar text found: Hello 1.0
+2024-11-22 21:37:48,746 - Using "Hello" as a close match to "Hello" with a confidence of 1.0
+2024-11-22 21:37:49,947 - 0. Excluding recent repeated response of "Hi"
+2024-11-22 21:37:50,456 - Selecting response from 55 optimal responses.
+2024-11-22 21:37:50,457 - Selecting first response from list of 55 options.
+2024-11-22 21:37:50,457 - Response selected. Using "Greetings!"
+2024-11-22 21:37:50,457 - BestMatch selected "Greetings!" as a response with a confidence of 1.0
+2024-11-22 21:37:50,457 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:37:50,457 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:37:51,807 - Adding "Hello" as a response to "Hello"
+2024-11-22 21:37:51,849 - Error in /chat endpoint: name 'response' is not defined
+2024-11-22 21:37:51,850 - 192.168.1.99 - - [22/Nov/2024 21:37:51] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-22 21:40:31,318 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.1.99:5001
+2024-11-22 21:40:31,318 - [33mPress CTRL+C to quit[0m
+2024-11-22 21:40:31,321 -  * Restarting with stat
+2024-11-22 21:40:45,857 -  * Debugger is active!
+2024-11-22 21:40:45,880 -  * Debugger PIN: 102-744-878
+2024-11-22 21:41:12,431 - 192.168.1.99 - - [22/Nov/2024 21:41:12] "GET / HTTP/1.1" 200 -
+2024-11-22 21:41:12,498 - 192.168.1.99 - - [22/Nov/2024 21:41:12] "[36mGET /static/css/styles.css HTTP/1.1[0m" 304 -
+2024-11-22 21:41:12,503 - 192.168.1.99 - - [22/Nov/2024 21:41:12] "[36mGET /static/images/cute-character.png HTTP/1.1[0m" 304 -
+2024-11-22 21:41:16,489 - Beginning search for close text match
+2024-11-22 21:41:16,490 - Processing search results
+2024-11-22 21:41:16,665 - Similar text found: Hello 1.0
+2024-11-22 21:41:20,720 - Using "Hello" as a close match to "Hello" with a confidence of 1.0
+2024-11-22 21:41:22,853 - 0. Excluding recent repeated response of "Hello"
+2024-11-22 21:41:22,854 - 1. Excluding recent repeated response of "Hi"
+2024-11-22 21:41:23,828 - Selecting response from 57 optimal responses.
+2024-11-22 21:41:23,829 - Selecting first response from list of 57 options.
+2024-11-22 21:41:23,829 - Response selected. Using "Greetings!"
+2024-11-22 21:41:23,830 - BestMatch selected "Greetings!" as a response with a confidence of 1.0
+2024-11-22 21:41:23,831 - Not processing the statement using MathematicalEvaluation
+2024-11-22 21:41:23,831 - Not processing the statement using SpecificResponseAdapter
+2024-11-22 21:41:26,268 - Adding "Hello" as a response to "Hello"
+2024-11-22 21:41:26,338 - Error in /chat endpoint: name 'response' is not defined
+2024-11-22 21:41:26,339 - 192.168.1.99 - - [22/Nov/2024 21:41:26] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2024-11-26 22:15:10,124 - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://192.168.1.99:5001
+2024-11-26 22:15:10,125 - [33mPress CTRL+C to quit[0m
+2024-11-26 22:15:10,130 -  * Restarting with stat
+2024-11-26 22:15:23,508 -  * Debugger is active!
+2024-11-26 22:15:23,522 -  * Debugger PIN: 102-744-878
+2024-11-26 22:16:04,364 - 192.168.1.99 - - [26/Nov/2024 22:16:04] "GET / HTTP/1.1" 200 -
+2024-11-26 22:16:04,617 - 192.168.1.99 - - [26/Nov/2024 22:16:04] "GET /static/css/styles.css HTTP/1.1" 200 -
+2024-11-26 22:16:04,618 - 192.168.1.99 - - [26/Nov/2024 22:16:04] "GET /static/images/cute-character.png HTTP/1.1" 200 -
+2024-11-26 22:16:05,321 - 192.168.1.99 - - [26/Nov/2024 22:16:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2024-11-26 22:16:10,819 - Beginning search for close text match
+2024-11-26 22:16:10,819 - Processing search results
+2024-11-26 22:16:11,044 - Similar text found: Hello 1.0
+2024-11-26 22:16:14,894 - Using "Hello" as a close match to "Hello" with a confidence of 1.0
+2024-11-26 22:16:19,798 - Selecting response from 219 optimal responses.
+2024-11-26 22:16:19,798 - Selecting first response from list of 219 options.
+2024-11-26 22:16:19,798 - Response selected. Using "Hi"
+2024-11-26 22:16:19,799 - BestMatch selected "Hi" as a response with a confidence of 1.0
+2024-11-26 22:16:19,799 - Not processing the statement using MathematicalEvaluation
+2024-11-26 22:16:19,800 - Not processing the statement using SpecificResponseAdapter
+2024-11-26 22:16:22,465 - Adding "Hello" as a response to "What is gravity?"
+2024-11-26 22:16:22,519 - Error in /chat endpoint: name 'response' is not defined
+2024-11-26 22:16:22,520 - 192.168.1.99 - - [26/Nov/2024 22:16:22] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -

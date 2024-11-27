@@ -3,32 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel ="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>Scientific Calculator</title>
+    <title>Cute Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        .display {
+            background: #f7f7f7;
+            padding: 20px;
+            font-size: 24px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            height: 60px;
+            width: 100%;
+            text-align: right;
+            box-sizing: border-box;
+        }
+
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            background-color: #8bc34a;
+            color: white;
+            font-size: 24px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .button:hover {
+            background-color: #689f38;
+        }
+
+        .button-clear {
+            background-color: #f44336;
+        }
+
+        .button-clear:hover {
+            background-color: #d32f2f;
+        }
+
+        .button-equal {
+            background-color: #2196f3;
+        }
+
+        .button-equal:hover {
+            background-color: #1976d2;
+        }
+
+        .scientific-calculator {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scientific-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .scientific-button {
+            width: 60px;
+            height: 60px;
+            background-color: #673ab7;
+            color: white;
+            font-size: 20px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .scientific-button:hover {
+            background-color: #512da8;
+        }
+
+        .switch-button {
+            width: 100%;
+            background-color: #9c27b0;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .switch-button:hover {
+            background-color: #7b1fa2;
+        }
+
+    </style>
 </head>
 <body>
     <div class="calculator">
-        <h1>Scientific Calculator</h1>
-        <form action="/calculate" method="post">
-            <input type="text" name="expression" placeholder="Enter expression" required>
-            <button type="submit">Calculate</button>
-        </form>
-        <div class="result">
-            <h2>Result: <span id="result"></span></h2>
+        <div class="display" id="display">0</div>
+        <div class="button-row">
+            <button class="button button-clear" id="clear">C</button>
+            <button class="button" id="divide">/</button>
+            <button class="button" id="multiply">*</button>
+            <button class="button" id="subtract">-</button>
+        </div>
+        <div class="button-row">
+            <button class="button" id="seven">7</button>
+            <button class="button" id="eight">8</button>
+            <button class="button" id="nine">9</button>
+            <button class="button" id="add">+</button>
+        </div>
+        <div class="button-row">
+            <button class="button" id="four">4</button>
+            <button class="button" id="five">5</button>
+            <button class="button" id="six">6</button>
+            <button class="button-equal" id="equal">=</button>
+        </div>
+        <div class="button-row">
+            <button class="button" id="one">1</button>
+            <button class="button" id="two">2</button>
+            <button class="button" id="three">3</button>
+            <button class="button" id="zero">0</button>
+        </div>
+        <div class="button-row">
+            <button class="button" id="decimal">.</button>
+        </div>
+        <button class="switch-button" id="scientific-switch">Switch to Scientific</button>
+
+        <!-- Scientific Calculator Section (hidden by default) -->
+        <div class="scientific-calculator" id="scientific-calculator" style="display:none;">
+            <div class="scientific-row">
+                <button class="scientific-button" id="sin">sin</button>
+                <button class="scientific-button" id="cos">cos</button>
+                <button class="scientific-button" id="tan">tan</button>
+            </div>
+            <div class="scientific-row">
+                <button class="scientific-button" id="sqrt">√</button>
+                <button class="scientific-button" id="pow">x²</button>
+                <button class="scientific-button" id="log">log</button>
+            </div>
+            <div class="scientific-row">
+                <button class="scientific-button" id="pi">π</button>
+                <button class="scientific-button" id="exp">e</button>
+                <button class="scientific-button" id="ln">ln</button>
+            </div>
         </div>
     </div>
+
     <script>
-        const form = document.querySelector('form');
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            const formData = new FormData(form);
-            const response = await fetch('/calculate', {
-                method: 'POST',
-                body: formData
-            });
-            const result = await response.text();
-            document.getElementById('result').innerText = result;
-        };
+        // Variables for calculator
+        let display = document.getElementById('display');
+        let currentInput = '';
+        let previousInput = '';
+        let operator = '';
+        let isScientific = false;
+
+        // Event listeners for basic calculator buttons
+        document.getElementById('clear').addEventListener('click', () => {
+            currentInput = '';
+            display.textContent = '0';
+        });
+
+        document.getElementById('divide').addEventListener('click', () => operatorPressed('/'));
+        document.getElementById('multiply').addEventListener('click', () => operatorPressed('*'));
+        document.getElementById('subtract').addEventListener('click', () => operatorPressed('-'));
+        document.getElementById('add').addEventListener('click', () => operatorPressed('+'));
+
+        document.getElementById('seven').addEventListener('click', () => appendNumber('7'));
+        document.getElementById('eight').addEventListener('click', () => appendNumber('8'));
+        document.getElementById('nine').addEventListener('click', () => appendNumber('9'));
+        document.getElementById('four').addEventListener('click', () => appendNumber('4'));
+        document.getElementById('five').addEventListener('click', () => appendNumber('5'));
+        document.getElementById('six').addEventListener('click', () => appendNumber('6'));
+        document.getElementById('one').addEventListener('click', () => appendNumber('1'));
+        document.getElementById('two').addEventListener('click', () => appendNumber('2'));
+        document.getElementById('three').addEventListener('click', () => appendNumber('3'));
+        document.getElementById('zero').addEventListener('click', () => appendNumber('0'));
+
+        document.getElementById('decimal').addEventListener('click', () => appendNumber('.'));
+
+        document.getElementById('equal').addEventListener('click', () => calculateResult());
+
+        // Switch to scientific calculator
+        document.getElementById('scientific-switch').addEventListener('click', () => {
+            isScientific = !isScientific;
+            if (isScientific) {
+                document.getElementById('scientific-calculator').style.display = 'block';
+                document.getElementById('switch-button').textContent = 'Switch to Basic';
+            } else {
+                document.getElementById('scientific-calculator').style.display = 'none';
+                document.getElementById('switch-button').textContent = 'Switch to Scientific';
+            }
+        });
+
+        // Function for appending number to current input
+        function appendNumber(number) {
+            currentInput += number;
+            display.textContent = currentInput;
+        }
+
+        // Function for when operator is pressed
+        function operatorPressed(op) {
+            previousInput = currentInput;
+            operator = op;
+            currentInput = '';
+        }
+
+        // Function to calculate result
+        function calculateResult() {
+            if (operator && previousInput) {
+                let result = eval(previousInput + operator + currentInput);
+                display.textContent = result;
+                currentInput = result;
+            }
+        }
     </script>
 </body>
 </html>

@@ -18,3 +18,14 @@ User: Hello | Feedback: good
 User: How are you ? | Feedback: bad
 User: Where do you live ? | Feedback: bad
 User: Thank you for being considerate | Feedback: bad
+2024-11-22 21:14:44.761650 - User Message: What ? | Feedback: bad
+2024-11-22 21:15:24.568582 - User Message: What is the speed of light? | Feedback: good
+2024-11-22 21:15:43.073228 - User Message: How do plants grow? | Feedback: good
+2024-11-22 21:20:07.151258 - User Message: What is the color of the sky ? | Feedback: bad
+2024-11-22 21:21:45.054696 - User Message: The color of the sky is blue  | Feedback: bad
+2024-11-22 21:22:03.224626 - User Message: ok bye | Feedback: bad
+2024-11-22 21:36:34.331345 - User Message: Hello | Feedback: bad
+User: what did the Indian ocean say to the Atlantic ocean ? Nothing , just waved !!! | Feedback: bad
+User: Hello | Feedback: good
+User: What is a black hole? | Feedback: good
+User: Hello | Feedback: good

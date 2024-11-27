@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid-Friendly Chatbot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <img src="static/images/cute-character.png" alt="Cute Character" class="character-icon">
+        <h2>🧪 Science-bot 🤖</h2>
+        <div id="chat-box" class="chat-box">
+            <!-- Speech bubbles will be appended here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send 📨</button>
+        </div>
+        <div id="action-buttons">
+            <!-- Options will be dynamically populated here -->
+        </div>
+    </div>
+
+    <script>
+        let lastUserMessage = ""; // Store the last user message
+
+        // Function to start the chat with name and age
+        function startChat() {
+            appendUserMessage("Hello! What is your name?");
+            setTimeout(() => {
+                const userName = prompt("What's your name?");
+                appendUserMessage(userName); // Show name in chat
+                appendBotMessage("How old are you?");
+                setTimeout(() => {
+                    const userAge = prompt("How old are you?");
+                    appendUserMessage(userAge); // Show age in chat
+                    sendUserData(userName, userAge); // Send to backend
+                }, 1000);
+            }, 1000);
+        }
+
+        // Send user data to backend
+        function sendUserData(name, age) {
+            fetch('/start_chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, age: age })
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendBotMessage(data.message);
+                displayOptions(data.options);  // Show the action buttons
+            });
+        }
+
+        // Function to send a message to the chatbot
+        function sendMessage() {
+            const userMessage = document.getElementById("user-message").value;
+            if (!userMessage.trim()) return;
+
+            appendUserMessage(userMessage);
+            fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message: userMessage })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.bot_message) {
+                    handleBotResponse(data.bot_message);
+                } else {
+                    handleError();
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                handleError();
+            });
+        }
+
+        // Function to append the user's message to the chat
+        function appendUserMessage(message) {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble user-bubble"><p>🧍 You: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
+
+        // Function to append the bot's message to the chat
+        function appendBotMessage(message) {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
+
+        // Display available options as buttons
+        function displayOptions(options) {
+            const actionButtons = document.getElementById("action-buttons");
+            actionButtons.innerHTML = '';  // Clear previous options
+            options.forEach(option => {
+                const button = document.createElement("button");
+                button.innerText = option;
+                button.onclick = () => handleOption(option);
+                actionButtons.appendChild(button);
+            });
+        }
+
+        // Handle user option selection
+        function handleOption(option) {
+            if (option === "Take a Science Quiz") {
+                fetch('/quiz', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    appendBotMessage(data.message);
+                });
+            } else if (option === "Scientific Calculator") {
+                window.location.href = '/calculator';
+            } else if (option === "Let's Plot a Function") {
+                window.location.href = 'https://www.geogebra.org/graphing';
+            } else if (option === "Let's Play a Game") {
+                window.location.href = '/game';
+            } else {
+                appendBotMessage(`You selected: ${option}`);
+            }
+        }
+
+        // Start the initial chat when the page loads
+        window.onload = startChat;
+    </script>
+</body>
+</html>

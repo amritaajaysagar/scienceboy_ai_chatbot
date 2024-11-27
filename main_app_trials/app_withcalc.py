@@ -8,7 +8,7 @@ from nltk.corpus import stopwords
 from functions.language_selection import get_language_options, get_language_by_code
 from functions.greetings import load_greetings, load_user_data, greet_and_create_profile, save_user_data
 from functions.science_answers import answer_science_question
-from functions.science_quiz import run_quiz
+from science_quiz2 import run_quiz
 
 # Download NLTK resources if you haven't already
 nltk.download('punkt')

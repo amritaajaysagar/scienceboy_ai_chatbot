@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Puzzle Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        h1 {
+            color: #6a1b9a;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .puzzle-board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 10px;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            background-color: #8bc34a;
+            color: white;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .tile:hover {
+            background-color: #689f38;
+        }
+
+        .empty {
+            background-color: transparent;
+            cursor: default;
+        }
+
+        .win-message {
+            display: none;
+            background-color: #ffeb3b;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #9c27b0;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #7b1fa2;
+        }
+    </style>
+</head>
+<body>
+    <h1>8-Puzzle Game</h1>
+    <div class="puzzle-board" id="puzzle-board"></div>
+    <div class="win-message" id="win-message">You solved the puzzle!</div>
+    <button class="button" id="reset-button">Start New Game</button>
+
+    <script>
+        let board;
+        let emptyTileIndex;
+        const puzzleBoard = document.getElementById("puzzle-board");
+        const winMessage = document.getElementById("win-message");
+        const resetButton = document.getElementById("reset-button");
+
+        const initialBoard = [1, 2, 3, 4, 5, 6, 7, 8, null];
+
+        function shuffle(array) {
+            let currentIndex = array.length, randomIndex, tempValue;
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                tempValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = tempValue;
+            }
+            return array;
+        }
+
+        function createTile(value, index) {
+            const tile = document.createElement("div");
+            tile.classList.add("tile");
+            if (value === null) {
+                tile.classList.add("empty");
+            } else {
+                tile.textContent = value;
+            }
+            tile.addEventListener("click", () => moveTile(index));
+            return tile;
+        }
+
+        function renderBoard() {
+            puzzleBoard.innerHTML = "";
+            board.forEach((value, index) => {
+                const tile = createTile(value, index);
+                puzzleBoard.appendChild(tile);
+            });
+        }
+
+        function moveTile(index) {
+            const adjacentTiles = [
+                emptyTileIndex - 3, // Above
+                emptyTileIndex + 3, // Below
+                emptyTileIndex - 1, // Left
+                emptyTileIndex + 1  // Right
+            ];
+
+            if (adjacentTiles.includes(index) && index >= 0 && index < 9) {
+                [board[emptyTileIndex], board[index]] = [board[index], board[emptyTileIndex]];
+                emptyTileIndex = index;
+                renderBoard();
+                checkWin();
+            }
+        }
+
+        function checkWin() {
+            if (board.every((value, index) => value === initialBoard[index] || value === null)) {
+                winMessage.style.display = "block";
+            }
+        }
+
+        function startNewGame() {
+            board = shuffle([...initialBoard]);
+            emptyTileIndex = board.indexOf(null);
+            renderBoard();
+            winMessage.style.display = "none";
+        }
+
+        resetButton.addEventListener("click", startNewGame);
+
+        // Start the game when the page loads
+        startNewGame();
+    </script>
+</body>
+</html>

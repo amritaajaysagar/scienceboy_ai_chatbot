@@ -112,7 +112,7 @@ def chat():
         bot_response = generate_response(user_message, user_id)
 
         # Log user interaction
-        logging.info(f"User {user_id}: {user_message} | Bot: {bot_response}")
+        logging.info(f"User {user_id}: {user_message} | Bot: {bot_response} | Confidence: {response.confidence}")
 
         return jsonify({"bot_message": bot_response})
 
@@ -143,5 +143,6 @@ def feedback():
         logging.error(f"Error in /feedback endpoint: {e}")
         return jsonify({"error": "Something went wrong on the server"}), 500
 
+
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0', port=5000)
+    app.run(debug=True,host='0.0.0.0', port=5001)

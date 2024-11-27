@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kid-Friendly Chatbot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <img src="static/images/cute-character.png" alt="Cute Character" class="character-icon">
+        <h2>🧪 Science-bot 🤖</h2>
+        <div id="chat-box" class="chat-box">
+            <!-- Speech bubbles will be appended here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send 📨</button>
+            <button id="voice-btn" onclick="handleVoiceInput()">🎙️ Talk</button>
+        </div>
+        <div id="feedback-buttons" class="feedback-buttons" style="display: none;">
+            <button onclick="sendFeedback('good')">👍 Good</button>
+            <button onclick="sendFeedback('bad')">👎 Bad</button>
+        </div>
+    </div>
+
+    <script>
+        let lastUserMessage = ""; // Store the last user message
+        const voiceBtn = document.getElementById("voice-btn");
+
+        // Function to send text message
+        function sendMessage() {
+            const userMessage = document.getElementById("user-message").value;
+            if (!userMessage.trim()) return;
+
+            // Append user's message to chat
+            appendUserMessage(userMessage);
+            lastUserMessage = userMessage; // Save the last user message
+
+            // Send POST request to Flask backend
+            fetch("/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message: userMessage }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data && data.bot_message) {
+                    handleBotResponse(data.bot_message);
+                } else {
+                    handleError();  // In case the response doesn't contain the expected data
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                handleError();
+            });
+        }
+
+        // Function to append user's message to the chat
+        function appendUserMessage(message) {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble user-bubble"><p>🧍 You: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
+
+        // Function to handle bot response
+        function handleBotResponse(botMessage) {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: ${botMessage}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+
+            // Show feedback buttons after bot response
+            document.getElementById("feedback-buttons").style.display = "block";
+        }
+
+        // Function to handle server errors
+        function handleError() {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: Error communicating with server.</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+        }
+
+        // Function to send feedback
+        function sendFeedback(feedback) {
+            fetch("/feedback", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message: lastUserMessage, feedback: feedback }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Show feedback acknowledgment
+                // Hide feedback buttons after feedback is sent
+                document.getElementById("feedback-buttons").style.display = "none";
+            })
+            .catch(error => {
+                console.error("Error sending feedback:", error);
+            });
+        }
+
+        // Voice Chat Functionality
+        voiceBtn.addEventListener("click", () => {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(stream => {
+                    const mediaRecorder = new MediaRecorder(stream);
+                    const chunks = [];
+
+                    mediaRecorder.start();
+                    voiceBtn.textContent = "🎙️ Recording...";
+                    setTimeout(() => mediaRecorder.stop(), 5000); // Stop recording after 5 seconds
+
+                    mediaRecorder.ondataavailable = event => chunks.push(event.data);
+                    mediaRecorder.onstop = () => {
+                        voiceBtn.textContent = "🎙️ Talk";
+                        const audioBlob = new Blob(chunks, { type: "audio/wav" });
+                        const formData = new FormData();
+                        formData.append("audio", audioBlob);
+
+                        // Send audio to Flask backend
+                        fetch("/voice-chat", {
+                            method: "POST",
+                            body: formData,
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                alert("Error: " + data.error);
+                            } else {
+                                appendUserMessage(data.user_message);
+                                handleBotResponse(data.bot_message);
+
+                                // Play bot audio response
+                                const botAudio = new Audio(data.audio);
+                                botAudio.play();
+                            }
+                        })
+                        .catch(error => {
+                            console.error("Error:", error);
+                            alert("An error occurred. Please try again.");
+                        });
+                    };
+                })
+                .catch(error => {
+                    console.error("Microphone access denied:", error);
+                    alert("Microphone access denied. Please enable it to use voice chat.");
+                });
+        });
+    </script>
+</body>
+</html>
