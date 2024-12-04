@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Chatbot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <h1>🧪Science-bot🤖</h1>
+    <div id="chat-box" class="chat-box">
+        <!-- Speech bubbles will be appended here -->
+    </div>
+    <div class="chat-input">
+        <input type="text" id="user-message" placeholder="Say something..." />
+        <button onclick="startVoiceChat()">Start Voice Chat 🎤</button>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+        function startVoiceChat() {
+            // Check for Web Speech API compatibility
+            if (!('webkitSpeechRecognition' in window)) {
+                alert("Your browser doesn't support the Speech API");
+                return;
+            }
+
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = false; // Don't listen continuously
+            recognition.interimResults = false; // Don't return interim results
+            recognition.lang = 'en-US'; // Set language for recognition
+
+            recognition.start(); // Start recognition
+
+            recognition.onresult = function(event) {
+                const userMessage = event.results[0][0].transcript;
+                console.log("User said: ", userMessage);
+
+                // Append user message to the chat window
+                appendUserMessage(userMessage);
+
+                // Send the recognized text to the Flask backend
+                fetch("/voice_chat", {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: userMessage })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Bot Response:', data.bot_message);
+
+                    // Append bot response to the chat window
+                    appendBotMessage(data.bot_message);
+
+                    // Play the bot's speech response
+                    const audio = new Audio(data.audio);
+                    audio.play();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            };
+
+            recognition.onerror = function(event) {
+                console.error('Error with speech recognition: ', event.error);
+            };
+        }
+
+        // Function to append user message to the chat window
+        function appendUserMessage(message) {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble user-bubble"><p>🧍 You: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to append bot message to the chat window
+        function appendBotMessage(message) {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+</html>

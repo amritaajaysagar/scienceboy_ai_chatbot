@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+    <script>
+        let questions = []; // Placeholder for the quiz questions
+        let score = 0;
+        let topicFeedback = {};
+
+        // Function to load quiz questions based on selected difficulty
+        async function loadQuestions() {
+            const difficulty = document.getElementById("difficulty-select").value;
+
+            // Fetch the questions from the JSON
+            const response = await fetch('/static/question_bank.json');
+            const questionBank = await response.json();
+
+            // Randomly select 5 questions from all topics for the selected difficulty
+            questions = [];
+            for (const topic in questionBank[difficulty]) {
+                const topicQuestions = questionBank[difficulty][topic];
+                const randomQuestions = topicQuestions.sort(() => 0.5 - Math.random()).slice(0, 1);
+                questions.push(...randomQuestions.map(q => ({ ...q, topic }))); // Include topic for feedback
+            }
+            questions = questions.sort(() => 0.5 - Math.random()).slice(0, 10); // Shuffle and limit to 5 questions
+
+            // Initialize feedback tracking
+            topicFeedback = {};
+            for (const topic in questionBank[difficulty]) {
+                topicFeedback[topic] = { total: 0, correct: 0 };
+            }
+
+            // Display all questions at once
+            showAllQuestions();
+        }
+
+        // Function to display all questions at once
+        function showAllQuestions() {
+            let quizHtml = `<form id="quiz-form" onsubmit="submitQuiz(event)">`;
+            questions.forEach((question, index) => {
+                quizHtml += `
+                    <div class="question">
+                        <p>${index + 1}. ${question.question}</p>
+                        ${question.options.map((option, i) => `
+                            <div>
+                                <input type="radio" id="q${index}_o${i}" name="q${index}" value="${option}" required>
+                                <label for="q${index}_o${i}">${option}</label>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            });
+            quizHtml += `<button type="submit">Submit Quiz</button></form>`;
+            document.getElementById("quiz-container").innerHTML = quizHtml;
+        }
+
+        // Function to handle quiz submission
+        function submitQuiz(event) {
+            event.preventDefault(); // Prevent form submission reload
+
+            const form = document.getElementById("quiz-form");
+            const formData = new FormData(form);
+
+            // Reset score and topic feedback
+            score = 0;
+            Object.keys(topicFeedback).forEach(topic => {
+                topicFeedback[topic].total = 0;
+                topicFeedback[topic].correct = 0;
+            });
+
+            // Evaluate answers
+            questions.forEach((question, index) => {
+                const userAnswer = formData.get(`q${index}`);
+                topicFeedback[question.topic].total++;
+                if (userAnswer === question.answer) {
+                    score++;
+                    topicFeedback[question.topic].correct++;
+                }
+            });
+
+            // Show results
+            showResults();
+        }
+
+        // Function to display the results
+        function showResults() {
+            let feedbackHtml = `<h2>Your Score: ${score}/${questions.length}</h2>`;
+            feedbackHtml += "<ul>";
+
+            for (const [topic, feedback] of Object.entries(topicFeedback)) {
+                feedbackHtml += `<li>${topic}: ${feedback.correct}/${feedback.total} correct</li>`;
+                if (feedback.correct < 1) {
+                    feedbackHtml += `<p>You might want to explore more of ${topic}.</p>`;
+                }
+            }
+
+            feedbackHtml += "</ul>";
+            document.getElementById("quiz-container").innerHTML = feedbackHtml;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz</h1>
+        <div id="difficulty-selector">
+            <label for="difficulty-select">Choose Difficulty:</label>
+            <select id="difficulty-select">
+                <option value="VeryEasy">Very Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Difficult">Difficult</option>
+            </select>
+            <button onclick="loadQuestions()">Start Quiz</button>
+        </div>
+        <div id="quiz-container"></div>
+    </div>
+</body>
+</html>

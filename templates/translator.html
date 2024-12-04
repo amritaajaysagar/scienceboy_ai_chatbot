@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate Bot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h2>Translate Bot</h2>
+        <div id="chat-box" class="chat-box">
+            <!-- Speech bubbles will be appended here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Translate this to [language]: [text]">
+            <button onclick="translateMessage()">Translate</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+
+        // Function to append messages
+        function appendMessage(sender, message) {
+            const bubble = document.createElement("div");
+            bubble.classList.add("speech-bubble");
+            bubble.innerHTML = `<p>${sender}: ${message}</p>`;
+            chatBox.appendChild(bubble);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to handle translation
+        async function translateMessage() {
+            const userMessage = document.getElementById("user-message").value.trim();
+
+            if (!userMessage.toLowerCase().startsWith("translate this to")) {
+                appendMessage("Bot", "Invalid format. Use: translate this to [language]: [text]");
+                return;
+            }
+
+            const parts = userMessage.split(":");
+            if (parts.length < 2) {
+                appendMessage("Bot", "Invalid format. Use: translate this to [language]: [text]");
+                return;
+            }
+
+            const [_, languageAndText] = parts;
+            const [language, text] = languageAndText.split(":", 1).map(part => part.trim());
+
+            if (!language || !text) {
+                appendMessage("Bot", "Invalid format. Use: translate this to [language]: [text]");
+                return;
+            }
+
+            appendMessage("You", userMessage);
+            try {
+                const response = await fetch("https://libretranslate.com/translate", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        q: text,
+                        source: "en", // Assuming the input is in English
+                        target: language.toLowerCase(),
+                        format: "text"
+                    })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    appendMessage("Bot", `The translation is: ${data.translatedText}`);
+                } else {
+                    appendMessage("Bot", "Error during translation. Please try again.");
+                }
+            } catch (error) {
+                appendMessage("Bot", `An error occurred: ${error.message}`);
+            }
+        }
+    </script>
+</body>
+</html>

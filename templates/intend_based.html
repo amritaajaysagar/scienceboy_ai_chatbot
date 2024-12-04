@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Chatbot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <img src="static/images/cute-character.png" alt="Cute Character" class="character-icon">
+        <h2>🧪 Science-bot 🤖</h2>
+        <div id="chat-box" class="chat-box">
+            <!-- Speech bubbles will be appended here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send 📨</button>
+        </div>
+    </div>
+    <!-- Embed the PhET Build an Atom simulation using iframe (initially hidden) -->
+    
+    <div id="plotting" style="display:none;">
+        <h2>Lets Plot a Function</h2>
+        <iframe src="https://www.geogebra.org/classic" width="800" height="600" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <script>
+        const chatBox = document.getElementById("chat-box");
+
+        // Function to send the message and receive a response
+        function sendMessage() {
+            const userMessage = document.getElementById("user-message").value.trim();
+            if (!userMessage) {
+                appendBotMessage("Please enter a message.");
+                return;
+            }
+
+            // Append user message to the chat window
+            appendUserMessage(userMessage);
+            
+            // Clear the input field
+            document.getElementById("user-message").value = "";
+
+
+            // Handle specific commands in the user's message
+            if (userMessage.toLowerCase().includes("hey bot")) {
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: "hey bot" }) // Send "hey bot" to backend for greeting
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendBotMessage(data.bot_message);
+                })
+                .catch(error => {
+                    appendBotMessage("Error processing your message.");
+                });
+
+            } else if (userMessage.toLowerCase().includes("weather")) {
+                fetch('/weather', {  // Assuming there's an endpoint to fetch weather data
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: "weather" })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendBotMessage(data.weather);  // Display weather information
+                })
+                .catch(error => {
+                    appendBotMessage("Error fetching weather data.");
+                });
+
+            } else if (userMessage.toLowerCase().includes("track iss")) {
+                fetch('/iss_location', {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendBotMessage(`ISS Location: Latitude: ${data.latitude}, Longitude: ${data.longitude}`);
+                })
+                .catch(error => {
+                    appendBotMessage("Error fetching ISS location.");
+                });
+
+            } else if (userMessage.toLowerCase().includes("calculator")) {
+                window.location.href = '/calculator';  // Redirect to calculator page
+
+            } else if (userMessage.toLowerCase().includes("voice chat")) {
+                window.location.href = "/voice_chat";  // Navigate to the voice chat page
+            } else if (userMessage.toLowerCase().includes("plot")) {
+                document.getElementById("plotting").style.display = "block";
+                appendBotMessage("Here you go , plot some functions !");
+            } else if (userMessage.toLowerCase().includes("game")) {
+                window.location.href = '/game';
+            } else if (userMessage.toLowerCase().includes("atom simulator")) {
+                window.location.href = "https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html";    
+            } else if (userMessage.toLowerCase().includes("astronomy picture") || userMessage.toLowerCase().includes("apod")) {
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: "apod" })  // Send "apod" to backend for fetching Astronomy Picture of the Day
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.bot_message.includes("Image:")) {
+                        const imageUrl = data.bot_message.split("Image: ")[1];
+                        appendBotMessage(`${data.bot_message} <br><img src="${imageUrl}" alt="Astronomy Picture of the Day">`);
+                    } else {
+                        appendBotMessage(data.bot_message);
+                    }
+                })
+                .catch(error => {
+                    appendBotMessage("Error fetching Astronomy Picture of the Day.");
+                });
+    
+
+            } else {
+                    // If the message doesn't match any of the above, send it to the backend for processing
+                    fetch('/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userMessage }) // Send the unrecognized message to the backend
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        appendBotMessage(data.bot_message);  // Display backend response
+                    })
+                    .catch(error => {
+                        appendBotMessage("Error processing your message.");
+                    });
+            }
+        }
+
+        // Function to append user message to the chat
+        function appendUserMessage(message) {
+            chatBox.innerHTML += `<div class="speech-bubble user-bubble"><p>🧍 You: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to append bot response to the chat
+        function appendBotMessage(message) {
+            chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Navigate to Main Chat
+        function backToMainChat() {
+            window.location.href = "/"; // Redirect to the main chatbot page
+        }
+
+                
+        
+
+
+
+    </script>
+</body>
+</html>

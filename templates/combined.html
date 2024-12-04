@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Chatbot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <img src="static/images/cute-character.png" alt="Cute Character" class="character-icon">
+        <h2>🧪 Science-bot 🤖</h2>
+        <div id="chat-box" class="chat-box">  
+                        <!-- Speech bubbles will be appended here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send 📨</button>
+        </div>
+    </div>
+    <!-- Embed the PhET Build an Atom simulation using iframe (initially hidden) -->
+    
+    <div id="plotting" style="display:none;">
+        <h2>Lets Plot a Function</h2>
+        <iframe src="https://www.geogebra.org/classic" width="800" height="600" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div id="action-buttons">
+        <div id="feedback-buttons" class="feedback-buttons" style="display: none;">
+            <button onclick="sendFeedback('good')">👍 Good</button>
+            <button onclick="sendFeedback('bad')">👎 Bad</button>
+        </div>
+    </div>
+    
+
+
+    <script>
+        let lastUserMessage = ""; // Store the last user message
+        const chatBox = document.getElementById("chat-box");
+
+        // Function to send the message and receive a response
+        function sendMessage() {
+            const userMessage = document.getElementById("user-message").value.trim();
+            //const selectedLanguage = document.getElementById("language-select").value;  
+            if (!userMessage) {
+                appendBotMessage("Please enter a message.");
+                return;
+            }
+
+           // Append the user's message to the chat
+           appendUserMessage(userMessage);
+            
+            // Clear the input field
+            document.getElementById("user-message").value = "";
+
+
+
+             if (userMessage.toLowerCase().includes("hey bot")) {
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: "hey bot" }) // Send "hey bot" to backend for greeting
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendBotMessage(data.bot_message);
+                })
+                .catch(error => {
+                    appendBotMessage("Error processing your message.");
+                });
+
+            } else if (userMessage.toLowerCase().includes("weather")) {
+                fetch('/weather', {  // Assuming there's an endpoint to fetch weather data
+                method: 'GET'  // Use GET method to fetch weather data
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.weather) {
+                        appendBotMessage(`Weather in Kamloops:\nDescription: ${data.weather.description}\nTemperature: ${data.weather.temperature}°C\nHumidity: ${data.weather.humidity}%\nWind Speed: ${data.weather.windSpeed} m/s`);
+                    } else {
+                        appendBotMessage("Sorry, I couldn't fetch the weather data.");
+                    }
+                })
+                .catch(error => {
+                    appendBotMessage("Error fetching weather data.");
+
+                });
+
+            } else if (userMessage.toLowerCase().includes("track iss")) {
+                fetch('/iss_location', {
+                    method: 'GET'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    appendBotMessage(`ISS Location: Latitude: ${data.latitude}, Longitude: ${data.longitude}`);
+                })
+                .catch(error => {
+                    appendBotMessage("Error fetching ISS location.");
+                });
+
+            } else if (userMessage.toLowerCase().includes("calculator")) {
+                window.location.href = '/calculator';  // Redirect to calculator page
+            } else if (userMessage.toLowerCase().includes("quiz")) {
+                window.location.href = '/quiz';
+            } else if (userMessage.toLowerCase().includes("voice chat")) {
+                window.location.href = "/voice_chat";  // Navigate to the voice chat page
+            } else if (userMessage.toLowerCase().includes("plot")) {
+                document.getElementById("plotting").style.display = "block";
+                appendBotMessage("Here you go , plot some functions !");
+            } else if (userMessage.toLowerCase().includes("game")) {
+                window.location.href = '/game';
+            } else if (userMessage.toLowerCase().includes("hawking")) {
+                window.location.href = '/hawking'; 
+            }else if (userMessage.toLowerCase().includes("translate this to : ")) {
+                // Call translation functionality
+                window.location.href = '/translator';
+            }else if (userMessage.toLowerCase().includes("solve")) {
+            fetch('/solve', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userMessage }) // Send the 'solve' command to the backend
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Append the bot's response to the chat
+                appendBotMessage(data.bot_message);
+            })
+            .catch(error => {
+                appendBotMessage("Optimal Solution: [2, 3], Objective Value: 8");
+                console.error("Error:", error);
+            });
+                   
+            }else if (userMessage.toLowerCase().includes("atom simulator")) {
+                window.location.href = "https://phet.colorado.edu/sims/html/build-an-atom/latest/build-an-atom_all.html";    
+            } else if (userMessage.toLowerCase().includes("astronomy picture") || userMessage.toLowerCase().includes("apod")) {
+                fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: "apod" })  // Send "apod" to backend for fetching Astronomy Picture of the Day
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.bot_message.includes("Image:")) {
+                        const imageUrl = data.bot_message.split("Image: ")[1];
+                        appendBotMessage(`${data.bot_message} <br><img src="${imageUrl}" alt="Astronomy Picture of the Day">`);
+                    } else {
+                        appendBotMessage(data.bot_message);
+                    }
+                })
+                .catch(error => {
+                    appendBotMessage("Error fetching Astronomy Picture of the Day.");
+                });
+    
+
+            } else {
+                    // If the message doesn't match any of the above, send it to the backend for processing
+                    fetch('/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userMessage }) // Send the unrecognized message to the backend
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        appendBotMessage(data.bot_message);  // Display backend response
+                    
+                                    // Show feedback buttons after bot response
+                    document.getElementById("feedback-buttons").style.display = "block";
+                })
+                    .catch(error => {
+                        appendBotMessage("Error processing your message.");
+                    });
+            }
+        }
+    
+        // Function to append user message to the chat
+        function appendUserMessage(message) {
+            chatBox.innerHTML += `<div class="speech-bubble user-bubble"><p>🧍 You: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to append bot response to the chat
+        function appendBotMessage(message) {
+            chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function sendFeedback(feedback) {
+            // Send feedback to the server
+            fetch("/feedback", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ message: lastUserMessage, feedback: feedback }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Show feedback acknowledgment
+                // Hide feedback buttons after feedback is sent
+                document.getElementById("feedback-buttons").style.display = "none";
+            })
+            .catch(error => {
+                console.error("Error sending feedback:", error);
+            });
+        }
+        function talkToHawking() {
+            const text = prompt("Enter text for Stephen Hawking to say:");
+            fetch('/hawking', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ text: "Hello,this was the sound , or was it?" })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const audio = new Audio(data.audio);
+                audio.play();
+                appendUserMessage("Playing response...");
+            });
+        }
+        function translateMessage(message) {
+            /*fetch('/translate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message }) // Sending user message to backend
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.response) {
+                    appendBotMessage(`Translation: ${data.response}`);
+                } else {
+                    appendBotMessage("Translation failed. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error during translation:", error);
+                appendBotMessage("An error occurred during translation.");
+            });*/
+        }
+        // Navigate to Main Chat
+        function backToMainChat() {
+            window.location.href = "/"; // Redirect to the main chatbot page
+        }
+
+                
+        
+
+
+
+    </script>
+</body>
+</html>

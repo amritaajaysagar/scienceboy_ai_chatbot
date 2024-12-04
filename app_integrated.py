@@ -3,7 +3,8 @@ from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer, ListTrainer
 import json
 import logging
-from science_quiz2 import run_quiz , load_question_bank # Import the function from science_quiz.py
+from science_quiz2 import run_quiz , load_question_bank # Import the function from science_quiz.
+from quiz import generate_quiz
 import nltk
 # Download NLTK resources if you haven't already
 nltk.download('punkt')
@@ -47,7 +48,7 @@ print("Chatbot trained successfully.")
 
 @app.route("/")
 def index():
-    return render_template("chat_integrated.html")
+    return render_template("chat_integrated2.html")
 
 @app.route("/greet", methods=["POST"])
 def greet():
@@ -204,7 +205,7 @@ def hawking_chat():
     text = request.json.get("text")
     if not text:
         return jsonify({"error": "Text is required for voice synthesis."}), 400
-    audio_file = synthesize_voice(text)
+    audio_file = hawking_voice(text)
     return jsonify({"audio": audio_file})
 
 @app.route("/solve_image", methods=["POST"])

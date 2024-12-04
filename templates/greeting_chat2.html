@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting Chatbot</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <img src="static/images/cute-character.png" alt="Cute Character" class="character-icon">
+        <h2>🧪Science-bot 🤖</h2>
+        <div id="chat-box" class="chat-box">
+            <!-- Speech bubbles will be appended here -->
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-message" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send 📨</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById("chat-box");
+
+        // Function to send the message and receive a response
+        function sendMessage() {
+            const userMessage = document.getElementById("user-message").value.trim();
+            if (!userMessage) {
+                appendBotMessage("Please enter a message.");
+                return;
+            }
+
+            // Append the user's message to the chat
+            appendUserMessage(userMessage);
+
+            // Clear the input field
+            document.getElementById("user-message").value = "";
+
+            // Handle simple intent-based responses
+            if (userMessage.toLowerCase().includes("hello") || userMessage.toLowerCase().includes("hi")) {
+                appendBotMessage("Hello! How can I help you today?");
+            } else if (userMessage.toLowerCase().includes("greet me")) {
+                startGreeting();
+            } else if (userMessage.toLowerCase().includes("quiz")) {
+                startQuiz();
+            } else if (userMessage.toLowerCase().includes("science")) {
+                startScience();
+            } else if (userMessage.toLowerCase().includes("voice chat")) {
+                window.location.href = "/voice_chat"; // Navigate to the voice chat page
+            } else {
+                appendBotMessage("I'm not sure what you're asking. Try saying 'greet me' or 'quiz'.");
+            }
+        }
+
+        // Function to append user message to the chat
+        function appendUserMessage(message) {
+            chatBox.innerHTML += `<div class="speech-bubble user-bubble"><p>🧍 You: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to append bot response to the chat
+        function appendBotMessage(message) {
+            chatBox.innerHTML += `<div class="speech-bubble bot-bubble"><p>🤖 Bot: ${message}</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Greet functionality
+        function startGreeting() {
+            const name = prompt("What's your name?");
+            const age = prompt("How old are you?");
+            fetch('/greet', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: name, age: age })
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendBotMessage(data.message);
+            });
+        }
+
+        // Science functionality
+        function startScience() {
+            const question = prompt("Ask a science-related question:");
+            fetch('/science', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question: question })
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendBotMessage(`Science Answer: ${data.answer}`);
+            });
+        }
+
+        // Quiz functionality
+        function startQuiz() {
+            fetch('/start_quiz', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'start' })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.questions) {
+                    displayQuestions(data.questions);
+                }
+            });
+        }
+
+        function displayQuestions(questions) {
+            const chatBox = document.getElementById("chat-box");
+
+            questions.forEach((q, i) => {
+                chatBox.innerHTML += `
+                    <p>${q.question}</p>
+                    ${q.options.map(opt => `<label><input type="radio" name="q${i}" value="${opt}"> ${opt}</label><br>`).join('')}
+                `;
+            });
+
+            chatBox.innerHTML += `<button onclick="submitQuiz(${questions.length})">Submit Quiz</button>`;
+        }
+
+        function submitQuiz(questionCount) {
+            const answers = [];
+            for (let i = 0; i < questionCount; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                answers.push(selectedOption ? selectedOption.value : null);
+            }
+
+            fetch('/submit_quiz', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ answers: answers })
+            })
+            .then(response => response.json())
+            .then(data => {
+                appendBotMessage(data.feedback);
+            });
+        }
+
+        // Navigate to Main Chat
+        function backToMainChat() {
+            window.location.href = "/"; // Redirect to the main chatbot page
+        }
+    </script>
+
+</body>
+</html>

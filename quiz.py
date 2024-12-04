@@ -1,36 +1,39 @@
-import random
 import json
+import random
 
-QUESTION_BANK_FILE = "question_bank.json"
-
+# Load question bank from the JSON file
 def load_question_bank():
-    with open(QUESTION_BANK_FILE, "r") as f:
+    with open('question_bank.json') as f:
         return json.load(f)
 
-def generate_quiz(age):
+# Function to generate quiz based on user's age
+def generate_quiz(age, num_questions=5):
     question_bank = load_question_bank()
+    
+    # Determine difficulty based on age
     if age <= 10:
-        level = "VeryEasy"
+        difficulty = "VeryEasy"
     elif 11 <= age <= 15:
-        level = "Medium"
+        difficulty = "Medium"
     else:
-        level = "Difficult"
+        difficulty = "Difficult"
+    
+    questions = question_bank.get(difficulty, [])
+    selected_questions = random.sample(questions, min(num_questions, len(questions)))
 
-    questions = question_bank.get(level, [])
-    return random.sample(questions, min(5, len(questions)))
+    return selected_questions
 
-def evaluate_answers(age, user_answers):
-    question_bank = load_question_bank()
-    if age <= 10:
-        level = "VeryEasy"
-    elif 11 <= age <= 15:
-        level = "Medium"
-    else:
-        level = "Difficult"
+# Function to evaluate answers
+def evaluate_answers(user_answers, correct_answers):
+    score = 0
+    feedback = {}
 
-    questions = question_bank.get(level, [])
-    correct_answers = [q["answer"] for q in questions]
-    score = sum(1 for u, c in zip(user_answers, correct_answers) if u.strip().lower() == c.strip().lower())
+    # Compare each answer
+    for i, (user_answer, correct_answer) in enumerate(zip(user_answers, correct_answers)):
+        if user_answer.strip().lower() == correct_answer.strip().lower():
+            score += 1
+            feedback[f"Q{i+1}"] = "Correct"
+        else:
+            feedback[f"Q{i+1}"] = f"Wrong! The correct answer is {correct_answer}"
 
-    feedback = [f"Q{i+1}: {'Correct' if u.strip().lower() == c.strip().lower() else 'Incorrect'}" for i, (u, c) in enumerate(zip(user_answers, correct_answers))]
     return score, feedback
